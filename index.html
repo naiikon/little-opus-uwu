@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Máy in phun Bạch Tuộc</title>
+    <meta name="theme-color" content="#ffffff"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="UwU" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/DZHdV88x/chan-135.png">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer" />
+
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.8/dist/purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/mammoth@1.4.21/mammoth.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <!-- CSS Split: Base & Layout -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- CSS Split: Core Features -->
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/settings.css">
+
+    <!-- CSS Split: Modules -->
+    <link rel="stylesheet" href="css/modules/peek.css">
+    <link rel="stylesheet" href="css/modules/moments.css">
+    <link rel="stylesheet" href="css/modules/search.css">
+    <link rel="stylesheet" href="css/modules/worldbook.css">
+    <link rel="stylesheet" href="css/modules/journal.css">
+    <link rel="stylesheet" href="css/modules/chat_archives.css">
+    <link rel="stylesheet" href="css/modules/steps.css">
+    <link rel="stylesheet" href="css/modules/more.css">
+    <link rel="stylesheet" href="css/modules/monitor.css">
+    <link rel="stylesheet" href="css/modules/tutorial.css">
+    <link rel="stylesheet" href="css/modules/shop.css">
+    <link rel="stylesheet" href="css/modules/widget_market.css">
+    <link rel="stylesheet" href="css/modules/cot_settings.css">
+    <link rel="stylesheet" href="css/modules/video_call.css">
+    <link rel="stylesheet" href="css/modules/storage.css">
+    <link rel="stylesheet" href="css/workshop.css">
+    <link rel="stylesheet" href="css/modules/console.css">
+    <link rel="stylesheet" href="css/modules/community.css">
+    <link rel="stylesheet" href="css/modules/reader.css">
+
+    <!-- Other Styles -->
+    <link rel="stylesheet" href="contacts.css">
+    <link rel="stylesheet" href="more_menu.css">
+    <!-- <link rel="stylesheet" href="style.css"> (Deprecated) -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+
+<body>
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <clipPath id="heart-clip" clipPathUnits="objectBoundingBox">
+      <path d="M0.5,1 C0.1,0.8,0,0.45,0.5,0.2 C1,0.45,0.9,0.8,0.5,1 Z" />
+    </clipPath>
+  </defs>
+</svg>
+<div class="phone-screen">
+    <div id="home-screen" class="screen active"></div>
+
+    <div id="chat-list-screen" class="screen">
+        <header class="app-header chat-list-header">
+            <div class="header-left">
+                <h1 class="title">Chats</h1>
+                <button class="back-btn hidden-back-btn" data-target="home-screen">‹</button>
+            </div>
+            <div class="action-btn-group">
+                <!-- Tìm kiếm (trang trí) -->
+                <button class="action-btn" title="Tìm">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <!-- Thêm nhân vật mới -->
+                <button class="action-btn" id="add-chat-btn-kkt" title="Thêm nhân vật mới">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                </button>
+                <!-- Tạo nhóm -->
+                <button class="action-btn" id="create-group-btn-kkt" title="Tạo nhóm">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </button>
+                <!-- Cài đặt/Nhập -->
+                <button class="action-btn" id="import-btn-kkt" title="Nhập/Cài đặt">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </header>
+        <div class="chat-category-tabs" id="chat-category-tabs">
+            <!-- JS Tạo động -->
+        </div>
+        <main class="content">
+            <ul class="list-container" id="chat-list-container"></ul>
+            <div class="placeholder-text" id="no-chats-placeholder" style="display: none;">
+                <p>Chưa có ai để trò chuyện cả~</p>
+                <p>Bấm “+” góc trên bên phải để tạo một người nhé!</p>
+            </div>
+        </main>
+    </div>
+    <div id="contacts-screen" class="screen">
+        <header class="app-header chat-list-header">
+            <div class="header-left">
+                <h1 class="title">Friends</h1>
+                <button class="back-btn hidden-back-btn" data-target="home-screen">‹</button>
+            </div>
+            <div class="action-btn-group">
+                <!-- Tìm -->
+                <button class="action-btn" title="Tìm">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <!-- Thêm bạn -->
+                <button class="action-btn" title="Thêm bạn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                </button>
+                <!-- Cài đặt -->
+                <button class="action-btn" title="Cài đặt">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </header>
+        <main class="content">
+            <!-- My Profile Section -->
+            <div class="profile-section" id="my-profile-section">
+                <!-- JS Chèn động thông tin của tôi -->
+                <div class="profile-item my-profile">
+                    <img src="https://i.postimg.cc/GtbTnxhP/o-o-1.jpg" alt="My Avatar" class="profile-avatar squircle" id="contacts-my-avatar">
+                    <div class="profile-info">
+                        <div class="profile-name" id="contacts-my-name">User Name</div>
+                        <div class="profile-status" id="contacts-my-status">Set a status message</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Friends List Section -->
+            <div class="friends-section">
+                <div class="section-title">Bạn bè <span id="friends-count">0</span></div>
+                <ul class="friend-list" id="contacts-list">
+                    <!-- JS Chèn động danh sách bạn bè -->
+                </ul>
+            </div>
+        </main>
+        
+    </div>
+
+    <div id="phone-screen" class="screen">
+        <header class="app-header chat-list-header">
+            <div class="header-left">
+                <h1 class="title">Community</h1>
+                <button class="back-btn hidden-back-btn" data-target="home-screen">‹</button>
+            </div>
+            <div class="action-btn-group">
+                <button class="action-btn" title="Thêm">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </header>
+        <main class="community-content">
+            <div class="community-search-layout">
+                <h2 class="community-logo">·&nbsp;&nbsp;UwU&nbsp;&nbsp;·</h2>
+                
+                <div class="community-search-box-wrapper">
+                    <div class="community-search-input-container">
+                        <svg class="community-search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" placeholder="Tìm" />
+                    </div>
+                </div>
+                
+                <p class="community-recent-search">Tìm gần đây: Cộng đồng UwU…</p>
+            </div>
+        </main>
+    </div>
+        <!-- Thanh điều hướng dưới toàn cục -->
+        <nav class="bottom-nav" id="global-bottom-nav" style="display: none;">
+            <button class="nav-item" title="Danh bạ" data-target="contacts-screen" data-nav-id="0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                <img class="nav-icon-img" src="" alt="icon">
+            </button>
+            <button class="nav-item active" title="Chat" data-target="chat-list-screen" data-nav-id="1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                </svg>
+                <img class="nav-icon-img" src="" alt="icon">
+                <span class="nav-badge" id="nav-chat-badge" style="display: none;">0</span>
+            </button>
+            <button class="nav-item" title="Điện thoại" data-target="phone-screen" data-nav-id="2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                </svg>
+                <img class="nav-icon-img" src="" alt="icon">
+            </button>
+            <button class="nav-item" title="Thêm" data-target="more-screen" data-nav-id="3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg>
+                <img class="nav-icon-img" src="" alt="icon">
+            </button>
+        </nav>
+    <div id="chat-room-screen" class="screen"></div> <!-- Đây là thẻ đóng của chat-room-screen -->
+            
+
+    <!-- Thêm: menu quản lý (bấm nút menu góc trên bên phải để hiện) -->
+    <div id="sticker-menu-actionsheet" class="action-sheet-overlay">
+        <div class="action-sheet">
+            <button class="action-sheet-button" id="menu-multi-select-btn">Quản lý chọn nhiều</button>
+            <button class="action-sheet-button" id="menu-batch-import-btn">Nhập hàng loạt</button>
+            <button class="action-sheet-button" id="menu-add-new-btn">Thêm sticker mới</button>
+            <button class="action-sheet-button danger" id="menu-cancel-btn">Hủy</button>
+        </div>
+    </div>
+
+    <!-- Thêm: hộp chuyển nhóm -->
+    <div id="move-sticker-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Chuyển đến nhóm</h3>
+            <div class="form-group">
+                <label>Chọn hoặc nhập tên nhóm mới</label>
+                <input type="text" id="move-target-group-input" placeholder="Ví dụ: ảnh mèo" list="existing-groups-list">
+                <datalist id="existing-groups-list">
+                    <!-- JS Tự điền các nhóm có sẵn -->
+                </datalist>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="confirm-move-sticker-btn" class="btn btn-primary" style="flex: 1;">Xác nhận chuyển</button>
+                <button id="cancel-move-sticker-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="world-book-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" id="world-book-back-btn">‹</button>
+            <div class="title-container">
+                <h1 class="title" id="world-book-title">World book</h1>
+            </div>
+            <div class="action-btn-group" style="position: relative;">
+                <!-- Nút chuyển chế độ xem -->
+                <button class="action-btn" id="world-book-view-toggle-btn" title="Chuyển chế độ xem" style="display: flex; align-items: center; justify-content: center;">
+                    <svg id="wb-grid-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <svg id="wb-list-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                </button>
+                <button class="action-btn" id="add-world-book-btn">+</button>
+                <button class="action-btn" id="cancel-wb-multi-select-btn" style="display: none; font-size: 16px;">Hủy</button>
+                
+                <!-- Menu thả xuống tạo mới -->
+                <div id="world-book-new-menu" class="world-book-new-menu" style="display: none;">
+                    <div class="menu-item" id="wb-menu-new-folder">Tạo thư mục mới</div>
+                    <div class="menu-item" id="wb-menu-new-entry">Tạo mục mới</div>
+                </div>
+            </div>
+        </header>
+        <main class="content" id="world-book-content-scroll">
+            <div id="world-book-list-container" class="grid-view"></div>
+            <div class="placeholder-text" id="no-world-books-placeholder" style="display: none;">
+                <p>Thế giới của bạn còn là một mớ hỗn mang...</p>
+                <p>Bấm “+” góc trên bên phải để tạo thiết lập đầu tiên nhé!</p>
+            </div>
+        </main>
+        <div id="world-book-multi-select-bar" style="display: none;">
+            <span id="world-book-select-count">Đã chọn 0 mục</span>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" id="move-selected-world-books-btn" style="width: auto; padding: 8px 16px;" disabled>Chuyển đến đây</button>
+                <button class="btn btn-danger" id="delete-selected-world-books-btn" style="width: auto; padding: 8px 16px;">Xóa mục đã chọn</button>
+            </div>
+        </div>
+    </div>
+    <div id="edit-world-book-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="world-book-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title" id="edit-world-book-title">Tạo/sửa mục</h1>
+            </div>
+            <div class="placeholder"></div>
+        </header>
+        <main class="content">
+            <form id="edit-world-book-form">
+                <input type="hidden" id="world-book-id">
+                <div class="form-group">
+                    <label for="world-book-name">Tên mục</label>
+                    <input type="text" id="world-book-name" placeholder="Ví dụ: bối cảnh thế giới, hệ thống phép thuật" required>
+                </div>
+                <div class="form-group">
+                    <label for="world-book-category">Phân loại mục</label>
+                    <input type="text" id="world-book-category" placeholder="Ví dụ: nhân vật, địa điểm, tổ chức (tùy chọn)">
+                </div>
+                <div class="form-group">
+                    <label for="world-book-content">Nội dung mục</label>
+                    <textarea id="world-book-content" rows="8" placeholder="Mô tả chi tiết thiết lập này..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Vị trí chèn</label>
+                    <div class="form-group radio-group">
+                        <label><input type="radio" name="world-book-position" value="limit_break"> 破限</label>
+                        <label><input type="radio" name="world-book-position" value="before" checked> Trước</label>
+                        <label><input type="radio" name="world-book-position" value="after"> Sau</label>
+                        <label><input type="radio" name="world-book-position" value="guidelines"> Quy chuẩn chat</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="world-book-depth">Độ sâu chèn (1-999)</label>
+                    <input type="number" id="world-book-depth" min="1" max="999" value="100" placeholder="Mặc định 100, số càng nhỏ thì thứ tự chèn càng lên trước" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu mục</button>
+            </form>
+        </main>
+    </div>
+    <div id="api-settings-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="home-screen">‹</button>
+            <div class="title-container"><h1 class="title">Cài đặt API</h1></div>
+            <div class="placeholder"></div>
+        </header>
+        <main class="content">
+            <div class="kkt-settings-container">
+                <form id="api-form">
+                    <!-- Cấu hình cơ bản -->
+                    <div class="kkt-group">
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Nhà cung cấp</div>
+                                <div class="kkt-item-subtitle">Chọn nền tảng cung cấp dịch vụ API</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <select id="api-provider" name="provider" style="border:none; background:transparent; text-align:right; direction: rtl; appearance: none; -webkit-appearance: none; padding-right: 15px; font-size: 14px;">
+                                    <option value="newapi">NewAPI (Tùy chỉnh)</option>
+                                    <option value="deepseek">DeepSeek</option>
+                                    <option value="claude">Claude</option>
+                                    <option value="gemini">Gemini</option>
+                                </select>
+                                <span class="kkt-arrow">›</span>
+                            </div>
+                        </div>
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Địa chỉ API</div>
+                                <div class="kkt-item-subtitle">Base URL (Như https://api.openai.com)</div>
+                            </div>
+                            <div class="kkt-item-control" style="flex: 1; max-width: 50%;">
+                                <input type="text" id="api-url" name="url" autocomplete="off" placeholder="https://..." style="text-align:right; border:none; background:transparent; width: 100%; font-size: 14px;">
+                            </div>
+                        </div>
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Key</div>
+                                <div class="kkt-item-subtitle">Thông tin xác thực API (sk-...)</div>
+                            </div>
+                            <div class="kkt-item-control" style="flex: 1; max-width: 50%;">
+                                <input type="password" id="api-key" name="key" autocomplete="new-password" placeholder="sk-..." style="text-align:right; border:none; background:transparent; width: 100%; font-size: 14px;">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Cấu hình model -->
+                    <div class="kkt-group">
+                         <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Danh sách model</div>
+                                <div class="kkt-item-subtitle">Lấy các model khả dụng từ máy chủ</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <button type="button" class="btn btn-small btn-secondary" id="fetch-models-btn" style="margin:0; padding: 6px 12px; border-radius: 20px;">
+                                    <span class="btn-text">Lấy</span>
+                                    <div class="spinner"></div>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Chọn model</div>
+                                <div class="kkt-item-subtitle">Model hội thoại đang dùng</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <select id="api-model" name="model" style="border:none; background:transparent; text-align:right; direction: rtl; max-width: 180px; appearance: none; -webkit-appearance: none; padding-right: 15px; font-size: 14px;">
+                                    <option value="">Vui lòng lấy trước</option>
+                                </select>
+                                <span class="kkt-arrow">›</span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Cài đặt nâng cao -->
+                    <div class="kkt-group">
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Tăng cường cảm nhận thời gian</div>
+                                <div class="kkt-item-subtitle">Cho AI biết thời gian thật hiện tại</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <label class="kkt-switch">
+                                    <input type="checkbox" id="time-perception-switch">
+                                    <span class="kkt-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Xuất dạng stream</div>
+                                <div class="kkt-item-subtitle">Hiệu ứng máy đánh chữ, hiện câu trả lời từng chữ</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <label class="kkt-switch">
+                                    <input type="checkbox" id="stream-switch">
+                                    <span class="kkt-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="kkt-item">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Tăng cường chạy liên tục</div>
+                                <div class="kkt-item-subtitle">Tăng khả năng sống sót khi chạy nền trên iOS/Android, hệ thống vẫn có thể tạm dừng trang web</div>
+                                <div class="kkt-item-subtitle" id="keep-alive-status" data-state="off">Chưa bật</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <label class="kkt-switch">
+                                    <input type="checkbox" id="keep-alive-switch">
+                                    <span class="kkt-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="kkt-item" style="flex-direction: column; align-items: stretch; padding-bottom: 20px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                                <div class="kkt-item-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                </div>
+                                <div class="kkt-item-content">
+                                    <div class="kkt-item-title">Nhiệt độ</div>
+                                    <div class="kkt-item-subtitle">Giá trị càng lớn tư duy càng bay bổng, càng nhỏ càng chặt chẽ</div>
+                                </div>
+                                <label class="kkt-switch" style="margin-right: 10px;">
+                                    <input type="checkbox" id="temperature-enabled-switch">
+                                    <span class="kkt-slider"></span>
+                                </label>
+                                <span id="temperature-value" style="color: var(--primary-color); font-weight: bold; font-size: 16px;">1.0</span>
+                            </div>
+                            <input type="range" id="temperature-slider" min="0" max="2" step="0.1" value="1.0" style="width: 100%; accent-color: var(--primary-color); margin-top: 8px;">
+                        </div>
+                    </div>
+
+                    <div class="kkt-group" style="margin-top: 16px;">
+                        <div class="kkt-item">
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Bật bản phụ API</div>
+                                <div class="kkt-item-subtitle">Chỉ đảm nhận các chức năng phụ được tích bên dưới, chat chính không bị ảnh hưởng</div>
+                            </div>
+                            <div class="kkt-item-control">
+                                <label class="kkt-switch">
+                                    <input type="checkbox" id="secondary-api-enabled">
+                                    <span class="kkt-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="secondary-api-panel">
+                            <div class="kkt-item">
+                                <div class="kkt-item-content"><div class="kkt-item-title">Nhà cung cấp API phụ</div></div>
+                                <div class="kkt-item-control">
+                                    <select id="secondary-api-provider" style="border:none;background:transparent;text-align:right;direction:rtl;appearance:none;padding-right:15px;font-size:14px;">
+                                        <option value="newapi">NewAPI (Tùy chỉnh)</option>
+                                        <option value="deepseek">DeepSeek</option>
+                                        <option value="claude">Claude</option>
+                                        <option value="gemini">Gemini</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="kkt-item">
+                                <div class="kkt-item-content">
+                                    <div class="kkt-item-title">Địa chỉ API phụ</div>
+                                    <div class="kkt-item-subtitle">Base URL</div>
+                                </div>
+                                <div class="kkt-item-control" style="flex:1;max-width:55%;">
+                                    <input type="text" id="secondary-api-url" autocomplete="off" placeholder="https://..." style="text-align:right;border:none;background:transparent;width:100%;font-size:14px;">
+                                </div>
+                            </div>
+                            <div class="kkt-item">
+                                <div class="kkt-item-content"><div class="kkt-item-title">Key API phụ</div></div>
+                                <div class="kkt-item-control" style="flex:1;max-width:55%;">
+                                    <input type="password" id="secondary-api-key" autocomplete="new-password" placeholder="sk-..." style="text-align:right;border:none;background:transparent;width:100%;font-size:14px;">
+                                </div>
+                            </div>
+                            <div class="kkt-item">
+                                <div class="kkt-item-content"><div class="kkt-item-title">Model API phụ</div></div>
+                                <div class="kkt-item-control" style="display:flex;gap:8px;max-width:60%;">
+                                    <select id="secondary-api-model" style="min-width:0;max-width:180px;border:none;background:transparent;font-size:14px;"><option value="">Vui lòng lấy model trước</option></select>
+                                    <button type="button" id="secondary-fetch-models-btn" class="btn btn-secondary" style="width:auto;padding:7px 10px;">Lấy</button>
+                                </div>
+                            </div>
+                            <div class="kkt-item" style="display:block;padding-top:14px;padding-bottom:14px;">
+                                <div class="kkt-item-title" style="margin-bottom:4px;">Các chức năng dùng API phụ</div>
+                                <div class="kkt-item-subtitle" style="margin-bottom:12px;">Prompt tạo ảnh do API riêng của Xưởng phụ trách, không nằm trong danh sách này</div>
+                                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;">
+                                    <label><input type="checkbox" data-secondary-route="callReply"> Trả lời cuộc gọi</label>
+                                    <label><input type="checkbox" data-secondary-route="callSummary"> Tóm tắt cuộc gọi</label>
+                                    <label><input type="checkbox" data-secondary-route="journal"> Nhật ký hồi ức</label>
+                                    <label><input type="checkbox" data-secondary-route="peek"> Nhìn lén điện thoại</label>
+                                    <label><input type="checkbox" data-secondary-route="shop"> Tạo hàng cửa hàng</label>
+                                    <label><input type="checkbox" data-secondary-route="batteryReminder"> Nhắc pin yếu</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="save-btn" style="margin-top: 20px; width: 100%;">
+                        <span class="btn-text">Lưu cài đặt</span>
+                        <div class="spinner"></div>
+                    </button>
+                </form>
+    
+                <!-- Quản lý preset -->
+                <div class="kkt-group" style="margin-top: 16px;">
+                    <div class="kkt-item" style="flex-direction: column; align-items: stretch; padding: 16px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                            <div class="kkt-item-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                            </div>
+                            <div class="kkt-item-content">
+                                <div class="kkt-item-title">Quản lý preset API</div>
+                                <div class="kkt-item-subtitle">Lưu hoặc tải cấu hình hay dùng</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                            <select id="api-preset-select" style="flex:1; padding:10px 12px; border-radius:8px; border:1px solid #e0e0e0; background: #f9f9f9; font-size: 14px; outline: none;">
+                                <option value="">— Chọn preset —</option>
+                            </select>
+                            <button type="button" id="api-apply-preset" class="btn btn-primary" style="padding: 10px 16px; border-radius: 8px; width: auto;">Áp dụng</button>
+                        </div>
+                        
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                            <button type="button" id="api-save-preset" class="btn btn-secondary" style="border-radius: 8px; padding: 10px;">Lưu thành</button>
+                            <button type="button" id="api-manage-presets" class="btn btn-secondary" style="border-radius: 8px; padding: 10px;">Quản lý</button>
+                            <button type="button" id="api-import-presets" class="btn btn-neutral" style="border-radius: 8px; padding: 10px; background: #f5f5f5;">Nhập</button>
+                            <button type="button" id="api-export-presets" class="btn btn-neutral" style="border-radius: 8px; padding: 10px; background: #f5f5f5;">Xuất</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="api-presets-modal" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:9999;align-items:center;justify-content:center;">
+                    <div class="modal-window" style="width:640px;max-width:94%;background:var(--panel-bg,#fff);padding:20px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.12);">
+                        <h3 style="margin:0 0 16px 0; font-size: 18px;">Quản lý preset API</h3>
+                        <div id="api-presets-list" style="max-height:360px;overflow:auto;border:1px solid #f0f0f0;padding:8px;border-radius:8px; background: #fafafa;"></div>
+                        <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end;">
+                            <button type="button" id="api-close-modal" class="btn btn-primary" style="width: auto; padding: 10px 24px;">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="wallpaper-screen" class="screen">
+        <header class="app-header"><button class="back-btn" data-target="home-screen">‹</button><div class="title-container"><h1 class="title">Đổi hình nền</h1></div><div class="placeholder"></div></header><main class="content"><div class="wallpaper-preview" id="wallpaper-preview"><span>Xem trước hình nền hiện tại</span></div><input type="file" id="wallpaper-upload" accept="image/*" style="display: none;"><label for="wallpaper-upload" class="btn btn-primary">Chọn hình nền mới từ album</label></main>
+    </div>
+    <div id="widget-market-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="home-screen">‹</button>
+            <div class="workshop-tabs" style="display: flex; gap: 10px; flex: 1; justify-content: center;">
+                <button class="workshop-tab active" id="widget-tab-my" style="background: none; border: none; font-size: 16px; font-weight: bold; color: var(--primary-color); padding: 5px 10px; border-bottom: 2px solid var(--primary-color);">Widget của tôi</button>
+                <button class="workshop-tab" id="widget-tab-templates" style="background: none; border: none; font-size: 16px; font-weight: bold; color: #999; padding: 5px 10px; border-bottom: 2px solid transparent;">Template cơ bản</button>
+            </div>
+            <div class="action-btn-group">
+                <button class="action-btn" id="widget-multi-select-btn" title="Quản lý chọn nhiều" style="font-size: 14px; width: auto; padding: 0 8px;">Quản lý</button>
+                <button class="action-btn" id="widget-cancel-multi-select-btn" title="Hủy" style="display: none; font-size: 14px; width: auto; padding: 0 8px;">Hủy</button>
+            </div>
+        </header>
+        <main class="content" style="background: #f5f5f5; padding: 0;">
+            <div id="widget-my-content" class="widget-tab-content active" style="padding: 15px; height: 100%; overflow-y: auto;">
+                <!-- JS populated with Gallery -->
+            </div>
+            <div id="widget-templates-content" class="widget-tab-content" style="display: none; padding: 15px; height: 100%; overflow-y: auto;">
+                <!-- JS populated with Gallery -->
+            </div>
+            <input type="file" id="widget-import-input" accept=".json" style="display: none;">
+        </main>
+        
+        <!-- Thanh thao tác chọn nhiều -->
+        <div id="widget-multi-select-bar" style="display: none; position: absolute; bottom: 0; left: 0; right: 0; background: #fff; padding: 10px 15px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; justify-content: space-between; align-items: center;">
+            <span id="widget-select-count" style="font-size: 14px; color: #666;">Đã chọn 0 mục</span>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary btn-small" id="widget-batch-export-btn">Xuất</button>
+                <button class="btn btn-danger btn-small" id="widget-batch-delete-btn">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widget Editor Modal -->
+    <div id="widget-editor-modal" class="modal-overlay" style="z-index: 10005;">
+        <div class="modal-window" style="max-height: 90vh; display: flex; flex-direction: column; width: 90%; max-width: 500px;">
+            <h3 id="widget-editor-title">Sửa widget</h3>
+            <form id="widget-editor-form" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; padding-right: 5px;">
+                <input type="hidden" id="widget-edit-id">
+                <div class="form-group">
+                    <label>Tên widget</label>
+                    <input type="text" id="widget-edit-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Kích thước (cỡ lưới)</label>
+                    <select id="widget-edit-size" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option value="1x1">1x1 (Vuông nhỏ)</option>
+                        <option value="2x2">2x2 (Vuông vừa)</option>
+                        <option value="4x2">4x2 (Chữ nhật)</option>
+                        <option value="4x4">4x4 (Vuông lớn)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>HTML Cấu trúc</label>
+                    <textarea id="widget-edit-html" rows="6" style="font-family: monospace; font-size: 12px;" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>CSS Style (dùng #{{id}} làm phạm vi)</label>
+                    <textarea id="widget-edit-css" rows="6" style="font-family: monospace; font-size: 12px;" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>JS Script (dùng '{{id}}' lấy widget hiện tạiID)</label>
+                    <textarea id="widget-edit-js" rows="6" style="font-family: monospace; font-size: 12px;" placeholder="Ví dụ:&#10;const widget = document.getElementById('{{id}}');&#10;widget.addEventListener('click', () => { ... });"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Biến mặc định (định dạng JSON)</label>
+                    <textarea id="widget-edit-vars" rows="4" style="font-family: monospace; font-size: 12px;" placeholder='{"title": "Tiêu đề", "image": "url"}'></textarea>
+                </div>
+                <!-- Sửa: chuyển nút vào trong form để kích hoạt sự kiện submit -->
+                <div style="display: flex; gap: 10px; margin-top: 15px; flex-shrink: 0;">
+                    <button type="submit" id="widget-editor-save-btn" class="btn btn-primary" style="flex: 1;">Lưu</button>
+                    <button type="button" id="widget-editor-cancel-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="customize-screen" class="screen">
+        <header class="app-header"><button class="back-btn" data-target="home-screen">‹</button><div class="title-container"><h1 class="title">Cài đặt cá nhân hóa</h1></div><div class="placeholder"></div></header><main class="content" style="padding: 16px;"><form id="customize-form"></form></main>
+    </div>
+
+    <div id="search-history-screen" class="screen">
+        <header class="search-header">
+            <div class="search-input-wrapper">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="search-history-input" autocomplete="off" placeholder="Tìm lịch sử chat...">
+            </div>
+            <button class="search-cancel-btn" id="search-cancel-btn">Hủy</button>
+        </header>
+        <div class="search-filter-bar">
+            <div class="search-scope-select active" id="search-scope-select">
+                <span>Phạm vi tìm: Tất cả</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+            </div>
+            <div class="search-option-toggle">
+                <label class="kkt-switch kkt-switch-small">
+                    <input type="checkbox" id="search-ignore-status" checked>
+                    <span class="kkt-slider"></span>
+                </label>
+                <span style="font-size:12px; color:#666;">Bỏ qua thanh trạng thái</span>
+            </div>
+        </div>
+        <main class="search-content" id="search-results-container">
+            <!-- JS Kết quả hiển thị -->
+        </main>
+        
+        <!-- Hộp chọn phạm vi -->
+        <div id="search-scope-modal" class="scope-modal">
+            <div class="scope-modal-content">
+                <h3 style="margin:0; font-size:16px; text-align:center;">Chọn phạm vi tìm</h3>
+                <div class="scope-list" id="search-scope-list">
+                    <!-- JS Tạo -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="more-screen" class="screen">
+        <header class="app-header chat-list-header">
+            <div class="header-left">
+                <h1 class="title">Menu</h1>
+                <button class="back-btn hidden-back-btn" data-target="home-screen">‹</button>
+            </div>
+            <div class="action-btn-group">
+                <!-- Đã gỡ nút cài đặt -->
+            </div>
+        </header>
+        <main class="content" style="padding: 20px;">
+            <!-- Profile Card (Custom Glass Style) -->
+            <div class="more-profile-card custom-glass-style">
+                <div class="glass-background-layer"></div>
+                <div class="profile-content-layer">
+                    <div class="more-profile-name" id="more-my-name">User Name</div>
+                    
+                    <div class="avatar-quote-container">
+                        <span class="quote-symbol left">❝</span>
+                        <div class="avatar-wrapper">
+                            <img src="https://i.postimg.cc/GtbTnxhP/o-o-1.jpg" alt="My Avatar" class="more-profile-avatar" id="more-my-avatar">
+                        </div>
+                        <span class="quote-symbol right">❞</span>
+                    </div>
+                    
+                    <div class="current-date-display" id="more-date-display">2025#0101</div>
+                    
+                    <div class="search-bar-decoration">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <span>Tìm lịch sử chat</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Placeholder for future content -->
+            <div class="more-content-placeholder">
+                <div class="menu-grid">
+                    <div class="menu-item" data-action="status-bar">
+                        <div class="menu-icon-wrapper">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 12h12M6 8h12M6 16h12"/></svg>
+                        </div>
+                        <span class="menu-item-label">Thanh trạng thái</span>
+                    </div>
+                    <div class="menu-item" data-action="cot-settings">
+                        <div class="menu-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6v6l4 2"></path></svg>
+                        </div>
+                        <span class="menu-item-label">Chuỗi suy nghĩ</span>
+                    </div>
+                    <div class="menu-item" data-action="calendar">
+                        <div class="menu-icon-wrapper">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <span class="menu-item-label">Lịch</span>
+                    </div>
+                    <div class="menu-item" data-action="star">
+                        <div class="menu-icon-wrapper">
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <span class="menu-item-label">Yêu thích</span>
+                    </div>
+                    <div class="menu-item" data-action="drawing-workshop">
+                        <div class="menu-icon-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="13.5" cy="6.5" r="1.5"/>
+                                <circle cx="17.5" cy="10.5" r="1.5"/>
+                                <circle cx="8.5" cy="7.5" r="1.5"/>
+                                <circle cx="6.5" cy="12.5" r="1.5"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.06 0 1.92-.86 1.92-1.92 0-.48-.18-.92-.48-1.26-.3-.34-.44-.79-.44-1.26 0-1.06.86-1.92 1.92-1.92h1.16c3.26 0 5.92-2.66 5.92-5.92C22 6.48 17.52 2 12 2z"/>
+                            </svg>
+                        </div>
+                        <span class="menu-item-label">Xưởng vẽ</span>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <div id="cot-settings-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="more-screen">‹</button>
+            <div class="title-container"><h1 class="title">Cài đặt chuỗi suy nghĩ (CoT)</h1></div>
+            <div class="placeholder"></div>
+        </header>
+        <main class="content" style="padding: 15px;">
+            <div class="kkt-settings-container">
+                <!-- Tab Thanh điều hướng -->
+                <div class="settings-tabs" id="cot-settings-tabs" style="margin-bottom: 15px;">
+                    <div class="settings-tab-item active" data-mode="chat">Chat</div>
+                    <div class="settings-tab-item" data-mode="call">Gọi</div>
+                </div>
+
+                <!-- Công tắc toàn cục -->
+                <div class="kkt-group">
+                    <div class="kkt-item">
+                        <div class="kkt-item-label">Phiên bản prompt</div>
+                        <div class="kkt-item-control">
+                            <select id="cot-prompt-version-select" style="border:none; background:transparent; text-align:right; direction: rtl; appearance: none; -webkit-appearance: none; padding-right: 15px; font-size: 14px; outline: none;">
+                                <option value="uwu">UwU</option>
+                                <option value="tt">T.T</option>
+                            </select>
+                            <span class="kkt-arrow" style="color: #999; margin-left: 5px;">›</span>
+                        </div>
+                    </div>
+                    <div class="kkt-item">
+                        <div class="kkt-item-label">Bật chuỗi suy nghĩ (CoT)</div>
+                        <div class="kkt-item-control">
+                            <label class="kkt-switch">
+                                <input type="checkbox" id="cot-enabled-switch">
+                                <span class="kkt-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="kkt-item">
+                        <div class="kkt-item-label">Điền trước thinking (Claude nên tắt)</div>
+                        <div class="kkt-item-control">
+                            <label class="kkt-switch">
+                                <input type="checkbox" id="cot-prefill-switch">
+                                <span class="kkt-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="kkt-item">
+                        <div class="kkt-item-label">Mục preset quá cảnh【Persona phức tạp + nhập vai người thật + hành vi nhất quán】</div>
+                        <div class="kkt-item-control">
+                            <label class="kkt-switch">
+                                <input type="checkbox" id="cot-human-run-switch">
+                                <span class="kkt-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quản lý preset -->
+                <div class="kkt-group" style="margin-top: 15px;">
+                    <div class="kkt-item" style="flex-direction: column; align-items: stretch;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div class="kkt-item-label">Preset hiện tại</div>
+                            <div style="display: flex; gap: 5px;">
+                                <button class="btn btn-small" id="cot-new-preset-btn">Tạo mới</button>
+                                <button class="btn btn-small" id="cot-manage-presets-btn">Quản lý</button>
+                                <button class="btn btn-small danger" id="cot-reset-preset-btn">Đặt lại</button>
+                            </div>
+                        </div>
+                        <select id="cot-preset-select" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #eee; background: transparent;">
+                            <!-- JS populated -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Danh sách mục -->
+                <div class="kkt-group" style="margin-top: 15px; padding-bottom: 10px;">
+                    <div class="kkt-item" style="border-bottom: 1px solid #f0f0f0; margin-bottom: 10px;">
+                        <div class="kkt-item-label" style="font-weight: bold;">Prompt Chuỗi mục</div>
+                    </div>
+                    <div id="cot-items-list" style="display: flex; flex-direction: column; gap: 10px;">
+                        <!-- JS populated items -->
+                    </div>
+                    <button class="btn btn-secondary" id="cot-add-item-btn" style="margin-top: 15px; width: 100%;">+ Thêm mục mới</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CoT Item Edit Modal -->
+    <div id="cot-item-edit-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Sửa mục</h3>
+            <form id="cot-item-edit-form">
+                <input type="hidden" id="cot-item-id">
+                <div class="form-group">
+                    <label>Tên mục</label>
+                    <input type="text" id="cot-item-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Prompt nội dung</label>
+                    <textarea id="cot-item-content" rows="10" required style="font-family: monospace; font-size: 13px;"></textarea>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Lưu</button>
+                    <button type="button" id="cot-item-cancel-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- CoT Preset Manage Modal -->
+    <div id="cot-preset-manage-modal" class="modal-overlay">
+        <div class="modal-window" style="max-width: 520px;">
+            <h3>Quản lý preset</h3>
+            <div id="cot-preset-list-container" style="max-height: 300px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #eee; border-radius: 8px; padding: 10px;">
+                <!-- JS populated -->
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button id="cot-import-preset-btn" class="btn btn-secondary">Nhập</button>
+                <button id="cot-close-manage-modal-btn" class="btn btn-primary">Đóng</button>
+            </div>
+            <input type="file" id="cot-import-file" accept=".json" style="display: none;">
+        </div>
+    </div>
+
+    <div id="status-bar-manager-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="more-screen">‹</button>
+            <div class="title-container"><h1 class="title">Quản lý thanh trạng thái</h1></div>
+            <div class="action-btn-group">
+                <button class="action-btn" id="import-status-preset-btn" title="Nhập preset">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </button>
+                <button class="action-btn" id="add-status-preset-btn" title="Thêm preset">+</button>
+            </div>
+        </header>
+        <main class="content" style="padding: 15px;">
+            <div id="status-bar-preset-list" class="preset-grid">
+                <!-- JS Tạo động -->
+            </div>
+            <input type="file" id="status-preset-import-input" accept=".json" style="display: none;">
+        </main>
+    </div>
+
+    <div id="status-bar-editor-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="status-bar-manager-screen">‹</button>
+            <div class="title-container"><h1 class="title" id="status-bar-editor-title">Sửa preset</h1></div>
+            <div class="placeholder"></div>
+        </header>
+        <main class="content">
+            <form id="status-bar-editor-form" onsubmit="event.preventDefault();">
+                <input type="hidden" id="sb-preset-id">
+                
+                <!-- Thông tin cơ bản -->
+                <div class="editor-section">
+                    <div class="form-group">
+                        <label>Tên preset</label>
+                        <input type="text" id="sb-preset-name" placeholder="Ví dụ: thanh HP dùng chung" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Prompt Hậu tố <span class="hint">(Bảo AI cách xuất trạng thái)</span></label>
+                        <textarea id="sb-preset-prompt" rows="2" placeholder="Ví dụ: hãy xuất mã trạng thái ở cuối câu trả lời:[HP:xx]"></textarea>
+                    </div>
+                </div>
+
+                <!-- Cấu hình cốt lõi & xem trước -->
+                <div class="editor-section">
+                    <div class="form-group">
+                        <label>Regex trích xuất (Regex) <span class="hint">(Dùng () để bắt biến)</span></label>
+                        <input type="text" id="sb-preset-regex" class="code-input" placeholder="Ví dụ:\[HP:(\d+)\]">
+                    </div>
+                    <div class="form-group">
+                        <label>HTML Template <span class="hint">(Dùng $1, $2 tham chiếu biến)</span></label>
+                        <textarea id="sb-preset-html" class="code-input" rows="3" placeholder='Ví dụ:<div class="hp-bar" style="width:$1%"></div>'></textarea>
+                    </div>
+                </div>
+
+                <!-- Phòng thí nghiệm xem trước -->
+                <div class="editor-section preview-lab">
+                    <div class="lab-header">🧪 Phòng thí nghiệm xem trước</div>
+                    <div class="form-group">
+                        <label>Văn bản test <span class="hint">(Mô phỏng nội dung AI trả lời)</span></label>
+                        <textarea id="sb-test-input" rows="2" placeholder="Nhập văn bản có chứa mã trạng thái, ví dụ: Bị tấn công![HP:80]"></textarea>
+                    </div>
+                    <div class="preview-result-box">
+                        <div class="preview-label">Kết quả khớp:<span id="sb-match-status" class="status-tag">Không khớp</span></div>
+                        <div class="preview-container" id="sb-preview-container">
+                            <!-- Kết quả hiển thị -->
+                            <span style="color:#999; font-size:12px;">Vùng xem trước</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="save-status-preset-btn" style="margin-top: 10px;">Lưu preset</button>
+            </form>
+        </main>
+    </div>
+
+    <div id="my-profile-screen" class="screen"></div>
+    <div id="tutorial-screen" class="screen">
+        <header class="app-header"><button class="back-btn" data-target="home-screen">‹</button><div class="title-container"><h1 class="title">Hướng dẫn</h1></div><div class="placeholder"></div></header><main class="content" id="tutorial-content-area"></main>
+    </div>
+    
+    <div id="console-screen" class="screen">
+        <div class="edge-console-container">
+            <!-- Edge Thanh tag phong cách -->
+            <div class="edge-tab-bar">
+                <div class="edge-tab active">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    Console nhà phát triển
+                </div>
+                <div class="edge-window-controls">
+                    <button class="edge-control-btn close-btn back-btn" data-target="home-screen">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Edge Thanh công cụ phong cách -->
+            <div class="edge-toolbar">
+                <div class="edge-toolbar-left">
+                    <div class="console-filters">
+                        <button class="console-filter-btn active" data-filter="all">Tất cả</button>
+                        <button class="console-filter-btn" data-filter="log">Log</button>
+                        <button class="console-filter-btn" data-filter="error">Báo lỗi</button>
+                    </div>
+                </div>
+                <div class="edge-toolbar-right">
+                    <button class="edge-action-btn" id="console-theme-btn" title="Đổi giao diện">
+                        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                    <button class="edge-action-btn" id="console-clear-btn" title="Xóa log">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        <span class="edge-btn-text">Xóa hết</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vùng nội dung log -->
+            <div id="console-log-container"></div>
+        </div>
+    </div>
+    <div id="toast-notification" class="toast">
+        <img class="toast-avatar" src="" alt="avatar">
+        <div class="toast-content">
+            <div class="toast-name"></div>
+            <div class="toast-message"></div>
+        </div>
+    </div>
+    <input type="file" id="image-upload-input" accept="image/*" style="display:none;">
+    
+    <!-- Token Breakdown Modal -->
+    <div id="token-breakdown-modal" class="modal-overlay" style="z-index: 10005;">
+        <div class="modal-window" style="max-width: 320px; padding: 20px;">
+            <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 16px; text-align: center;">Token Tỉ lệ tiêu hao</h3>
+            <div id="token-breakdown-list" style="display: flex; flex-direction: column; gap: 12px;">
+                <!-- JS populated -->
+            </div>
+            <div style="margin-top: 20px; text-align: center; font-size: 12px; color: #999;">
+                * Chỉ là ước tính sơ bộ, mức tiêu hao thực tế theo nhà cung cấp API
+            </div>
+            <button id="close-token-breakdown-btn" class="btn btn-neutral" style="width: 100%; margin-top: 15px; border-radius: 12px;">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Profile Card Modal -->
+    <div id="profile-card-modal" class="modal-overlay">
+        <div class="modal-window">
+            <div class="pc-header">
+                <img src="" class="pc-avatar" id="pc-avatar">
+            </div>
+            <div class="pc-content">
+                <div class="pc-name" id="pc-name">Character Name</div>
+                <div class="pc-remark" id="pc-remark">@RemarkName</div>
+                
+                <div class="pc-stats-grid">
+                    <div class="pc-stat-item">
+                        <span class="pc-stat-value" id="pc-stat-msg-count">0</span>
+                        <span class="pc-stat-label">Tin nhắn</span>
+                    </div>
+                    <div class="pc-stat-item">
+                        <span class="pc-stat-value" id="pc-stat-memory">0KB</span>
+                        <span class="pc-stat-label">Ký ức</span>
+                    </div>
+                    <div class="pc-stat-item">
+                        <span class="pc-stat-value" id="pc-stat-last-chat">-</span>
+                        <span class="pc-stat-label">Gần đây</span>
+                    </div>
+                </div>
+
+                <div class="pc-persona-box">
+                    <span class="pc-persona-label">Hồ sơ persona</span>
+                    <span id="pc-persona-text">...</span>
+                </div>
+
+                <div class="pc-actions">
+                    <button class="pc-btn-primary" id="pc-message-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path></svg>
+                        Nhắn tin
+                    </button>
+                    <!-- Chừa chỗ cho thêm nút thao tác -->
+                     <button class="pc-btn-secondary" id="pc-settings-btn" title="Cài đặt">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Capture Result Modal -->
+    <div id="capture-result-modal" class="modal-overlay">
+        <div class="modal-window" style="max-width: 90%; width: 400px;">
+            <h3>Tạo ảnh chụp thành công</h3>
+            <div id="capture-preview-container" style="max-height: 60vh; overflow-y: auto; margin: 15px 0; border: 1px solid #eee; border-radius: 8px; display: flex; justify-content: center; background: #f9f9f9;">
+                <!-- Image will be injected here -->
+            </div>
+            <p style="font-size: 12px; color: #999; text-align: center; margin-bottom: 15px;">Nhấn giữ ảnh để lưu vào điện thoại</p>
+            <div style="display: flex; gap: 10px;">
+                <button id="download-capture-btn" class="btn btn-secondary" style="flex: 1;">Tải ảnh xuống</button>
+                <button id="close-capture-modal-btn" class="btn btn-primary" style="flex: 1;">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Edit Modal -->
+    <div id="message-edit-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3 id="message-edit-modal-title">Sửa tin nhắn</h3>
+            <form id="message-edit-form">
+                <div class="form-group" id="message-edit-type-group" style="display: none; margin-bottom: 10px;">
+                    <label style="font-size: 12px; color: #666;">Loại tin nhắn</label>
+                    <select id="message-edit-type" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ddd;">
+                        <option value="text">Chữ</option>
+                        <option value="voice">Thoại</option>
+                        <option value="image">Ảnh/video</option>
+                        <option value="sticker">Sticker</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message-edit-textarea" rows="6" required></textarea>
+                </div>
+                <!-- Thêm: ô sửa mốc thời gian, mặc định ẩn -->
+                <div class="form-group" id="message-edit-timestamp-group" style="display: none; margin-top: 10px;">
+                    <label for="message-edit-timestamp" style="font-size: 12px; color: #666;">Thời gian tin nhắn (sửa có thể ảnh hưởng thứ tự)</label>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <input type="datetime-local" id="message-edit-timestamp" step="1" style="flex: 1;">
+                        <button type="button" id="hide-timestamp-btn" class="btn btn-neutral" style="padding: 8px 12px; font-size: 12px; white-space: nowrap; display: none;" title="Đặt thời gian bằng tin trước +1 phút">Ẩn mốc thời gian</button>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <!-- Nút xóa mới thêm, mặc định ẩn -->
+                    <button type="button" id="debug-delete-msg-btn" class="btn btn-danger" style="flex: 1; display: none;">Xóa</button>
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Lưu</button>
+                    <button type="button" id="cancel-edit-modal-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+    <div id="add-char-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Tạo nhân vật mới</h3>
+            <form id="add-char-form">
+                <div class="form-group">
+                    <label for="char-real-name">Họ tên nhân vật</label><input type="text" id="char-real-name"
+                                                                       placeholder="Tên thật của nhân vật" required>
+                </div>
+                <div class="form-group">
+                    <label for="char-remark-name">Ghi chú nhân vật (biệt danh)</label><input type="text" id="char-remark-name"
+                                                                                placeholder="Cách bạn gọi Ta" required>
+                </div>
+                <div class="form-group">
+                    <label for="my-name-for-char">Tên của tôi</label><input type="text" id="my-name-for-char"
+                                                                         placeholder="Bạn muốn Ta gọi bạn thế nào" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tạo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Import Confirm Modal -->
+    <div id="import-confirm-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Xác nhận thông tin nhân vật</h3>
+            <form id="import-confirm-form">
+                <div class="form-group">
+                    <label for="import-char-name">Tên thật nhân vật (Real Name)</label>
+                    <input type="text" id="import-char-name" required>
+                    <p style="font-size: 12px; color: #888; margin-top: 5px;">Đây là định danh duy nhất để hệ thống nhận diện nhân vật, tạo xong không sửa được, vui lòng xác nhận cẩn thận.</p>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Xác nhận nhập</button>
+                    <button type="button" id="cancel-import-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SillyTavern Unlock Modal -->
+    <div id="st-unlock-modal" class="modal-overlay">
+        <div class="modal-window" style="max-width: 400px;">
+            <h3>🔒 SillyTavern Xác thực người chơi</h3>
+            <div style="font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 20px;">
+                Để ngăn người không chơi Tavern lạm dụng tâm huyết của người khác, lần đầu dùng chức năng nhập cần xác thực môi trường. Hãy làm theo các bước sau:
+            </div>
+            
+            <div class="form-group">
+                <label style="font-weight: bold;">Bước 1: tạo thẻ xác thực</label>
+                <p style="font-size: 12px; color: #888; margin-bottom: 10px;">Chọn một ảnh, chúng tôi sẽ tạo cho bạn một thẻ nhân vật xác thực riêng.</p>
+                <input type="file" id="st-unlock-image-input" accept="image/*" style="display: none;">
+                <button type="button" class="btn btn-secondary" onclick="document.getElementById('st-unlock-image-input').click()" style="width: 100%;">Chọn ảnh và tải thẻ xác thực</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label style="font-weight: bold;">Bước 2: lấy key</label>
+                <p style="font-size: 12px; color: #888; margin-bottom: 10px;">Nhập ảnh vừa tải vào Tavern, tạo chat mới, bấm vào nút【tạo key】trong thẻ rồi sao chép.</p>
+                <input type="text" id="st-unlock-key-input" placeholder="Dán key vào đây (Base64)" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: monospace;">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button id="st-unlock-verify-btn" class="btn btn-primary" style="flex: 1;">Xác thực và mở khóa vĩnh viễn</button>
+                <button id="st-unlock-cancel-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+            </div>
+        </div>
+    </div>
+    <div id="add-sticker-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3 id="add-sticker-modal-title">Thêm sticker mới</h3>
+            <form id="add-sticker-form"><input type="hidden" id="sticker-edit-id">
+                <div id="sticker-preview"><span>Xem trước</span></div>
+                <div class="form-group"><label for="sticker-name">Tên sticker</label><input type="text" id="sticker-name" placeholder="Vd: vui" required></div>
+                <div class="form-group"><label for="sticker-group">Tên nhóm</label><input type="text" id="sticker-group" placeholder="Vd: nhóm mèo (không bắt buộc)"></div>
+
+               
+                <div class="form-group"><label for="sticker-url-input">Biểu cảmURL</label><input type="url"
+                                                                                             id="sticker-url-input"
+                                                                                             placeholder="Dán ảnhURL">
+                </div>
+                <p style="text-align:center; color:#888; margin: -10px 0 15px;">hoặc</p><input type="file"
+                                                                                             id="sticker-file-upload"
+                                                                                             accept="image/*"
+                                                                                             style="display:none;"><label
+                        for="sticker-file-upload" class="btn btn-secondary" style="width:100%; margin-bottom: 20px;">Tải từ máy</label>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+        </div>
+    </div>
+    <div id="sticker-actionsheet" class="action-sheet-overlay">
+        <div class="action-sheet">
+            <button class="action-sheet-button" id="edit-sticker-btn">Sửa</button>
+            <button class="action-sheet-button danger" id="delete-sticker-btn">Xóa</button>
+        </div>
+    </div>
+    <!-- Batch Add Sticker Modal -->
+    <div id="batch-add-sticker-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Nhập sticker hàng loạt</h3>
+            <form id="batch-add-sticker-form">
+                <div class="form-group">
+                    <label for="batch-sticker-group">Tên nhóm (mọi sticker trong lần này sẽ vào nhóm này)</label>
+                    <input type="text" id="batch-sticker-group" placeholder="Vd: nhóm chung">
+                </div>
+                <div class="form-group">
+                    <label for="sticker-urls-textarea">Định dạng dữ liệu: tên:URL (dấu hai chấm tiếng Anh, mỗi dòng một cái)</label>
+                    <textarea id="sticker-urls-textarea" rows="8" placeholder="Ví dụ:&#10;vui:https://example.com/happy.gif&#10;khóc:https://example.com/cry.png"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Bắt đầu nhập</button>
+            </form>
+        </div>
+    </div>
+    <div id="send-voice-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Gửi tin nhắn thoại</h3>
+            <form id="send-voice-form">
+                <div class="form-group">
+                    <label for="voice-text-input">Nhập nội dung tin thoại</label>
+                    <textarea id="voice-text-input" placeholder="Nhập điều bạn muốn nói ở đây..." required rows="4"></textarea>
+                </div>
+                <div class="form-group" style="text-align:center; color:#888; font-size: 14px;">
+                    Thời lượng dự kiến: <span id="voice-duration-preview">0"</span>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <div id="send-pv-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Chia sẻ ảnh/video</h3>
+            <form id="send-pv-form">
+                <div class="form-group">
+                    <label for="pv-text-input">Nhập mô tả</label>
+                    <textarea id="pv-text-input" placeholder="Mô tả nội dung ảnh hoặc video của bạn ở đây..." required
+                              rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <div id="send-transfer-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Chuyển khoản</h3>
+            <form id="send-transfer-form">
+                <div class="form-group">
+                    <label for="transfer-amount-input">Số tiền (tệ)</label>
+                    <input type="number" id="transfer-amount-input" placeholder="0.00" required step="0.01" min="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="transfer-remark-input">Ghi chú</label>
+                    <input type="text" id="transfer-remark-input" placeholder="(không bắt buộc)">
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <div id="send-gift-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Tặng quà</h3>
+            <form id="send-gift-form">
+                <div class="form-group">
+                    <label for="gift-description-input">mô tả quà</label>
+                    <textarea id="gift-description-input" placeholder="Nói cho Ta biết bạn đã tặng món gì đặc biệt..." required
+                              rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <div id="send-red-packet-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Gửi lì xì</h3>
+            <form id="send-red-packet-form">
+                <div class="form-group">
+                    <label for="red-packet-amount-input">Tổng số tiền (tệ)</label>
+                    <input type="number" id="red-packet-amount-input" placeholder="0.00" required step="0.01" min="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="red-packet-count-input">Số bao lì xì</label>
+                    <input type="number" id="red-packet-count-input" placeholder="Điền số lượng" required step="1" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="red-packet-remark-input">Lời nhắn</label>
+                    <input type="text" id="red-packet-remark-input" placeholder="Chúc phát tài, vạn sự như ý">
+                </div>
+                <p style="font-size: 12px; color: #888; margin-bottom: 15px;">* Lì xì sẽ được chia ngẫu nhiên cho các thành viên trong nhóm (kể cả bạn)</p>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1; background-color: #eb6660; border-color: #eb6660;">Nhét tiền vào lì xì</button>
+                    <button type="button" id="cancel-red-packet-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Red Packet Details Modal -->
+    <div id="red-packet-details-modal" class="modal-overlay">
+        <div class="modal-window" style="padding: 0; overflow: hidden; max-width: 320px;">
+            <div class="red-packet-modal-header">
+                <button class="red-packet-modal-close" id="close-red-packet-details-btn">×</button>
+                <h3 class="red-packet-modal-title">Lì xì</h3>
+                <div class="red-packet-modal-amount" id="red-packet-modal-amount">0.00<span>tệ</span></div>
+            </div>
+            <div class="red-packet-modal-body">
+                <div class="red-packet-modal-info" id="red-packet-modal-info">
+                    Tổng 0 bao lì xì, đã nhận 0/0
+                </div>
+                <div class="red-packet-detail-list" id="red-packet-detail-list">
+                    <!-- JS populated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Time Skip Modal -->
+    <div id="time-skip-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Ghi lại chuyện hôm nay</h3>
+            <form id="time-skip-form">
+                <div class="form-group">
+                    <label for="time-skip-input">Mô tả sự kiện (AI thấy được tin này, sẽ dùng làm ngữ cảnh)</label>
+                    <textarea id="time-skip-input" placeholder="Ví dụ: chúng mình cùng lên đỉnh núi ngắm hoàng hôn, rồi đi ăn đồ nướng." required
+                              rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <!-- NEW: Group Recipient Selection Modal -->
+    <div id="group-recipient-selection-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3 id="group-recipient-selection-title">Chọn người nhận</h3>
+            <ul id="group-recipient-selection-list"></ul>
+            <button class="btn btn-primary" id="confirm-group-recipient-btn" style="margin-top: 20px;">Xác nhận</button>
+        </div>
+    </div>
+
+    <!-- Folder Management Modal -->
+    <div id="folder-manage-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3 id="folder-modal-title">Tạo thư mục mới</h3>
+            <div class="form-group">
+                <input type="text" id="folder-name-input" placeholder="Vui lòng nhập tên thư mục" required>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="folder-confirm-btn" class="btn btn-primary" style="flex: 1;">Xác nhận</button>
+                <button id="folder-delete-btn" class="btn btn-danger" style="flex: 1; display: none;">Xóa</button>
+                <button id="folder-cancel-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Move Chat to Folder Modal -->
+    <div id="move-to-folder-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Chuyển vào thư mục</h3>
+            <ul id="folder-selection-list" class="list-container" style="max-height: 40vh; overflow-y: auto; padding: 0; margin: 15px 0;">
+                <!-- JS populated -->
+            </ul>
+            <button id="close-move-folder-modal" class="btn btn-neutral" style="margin-top: 10px;">Hủy</button>
+        </div>
+    </div>
+    <div id="receive-transfer-actionsheet" class="action-sheet-overlay">
+        <div class="action-sheet">
+            <button class="action-sheet-button" id="accept-transfer-btn">Nhận</button>
+            <button class="action-sheet-button danger" id="return-transfer-btn">Trả lại</button>
+        </div>
+    </div>
+    <!-- Private Chat Settings (KKT Style) -->
+    <div id="chat-settings-screen" class="screen"></div>
+    <div id="world-book-selection-modal" class="modal-overlay full-screen-modal">
+        <div class="modal-window" style="width: 100%; height: 100%; max-width: none; border-radius: 0; display: flex; flex-direction: column; padding: 0; background: #f5f5f5;">
+            <header class="app-header" style="flex-shrink: 0;">
+                <button class="back-btn" id="cancel-world-book-selection-btn" style="font-size: 16px; width: auto; padding: 0 10px;">Hủy</button>
+                <div class="title-container">
+                    <h1 class="title">Chọn world book</h1>
+                </div>
+                <button class="action-btn" id="save-world-book-selection-btn" style="font-size: 16px; width: auto; padding: 0 10px; color: var(--primary-color); font-weight: bold;">Xong</button>
+            </header>
+            
+            <div id="wb-selector-breadcrumb" style="background: #fff; padding: 10px 15px; border-bottom: 1px solid #eee; display: flex; align-items: center; font-size: 14px; color: #666; flex-shrink: 0;">
+                <button id="wb-selector-back-folder-btn" style="background: none; border: none; color: var(--primary-color); display: none; align-items: center; padding: 0; margin-right: 10px; cursor: pointer;">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Quay lại cấp trên
+                </button>
+                <span id="wb-selector-current-folder-name" style="font-weight: bold; color: #333;">Thư mục gốc</span>
+            </div>
+
+            <div style="flex: 1; overflow-y: auto; padding: 15px;">
+                <div class="kkt-group" style="margin: 0;">
+                    <div id="world-book-selection-list" style="display: flex; flex-direction: column;">
+                        <!-- JS populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Group Chat Creation Modal -->
+    <div id="create-group-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Tạo nhóm</h3>
+            <form id="create-group-form">
+                <div class="form-group">
+                    <label>Chọn thành viên nhóm</label>
+                    <ul id="member-selection-list" class="member-selection-list"></ul>
+                </div>
+                <div class="form-group">
+                    <label for="group-name-input">Tên nhóm</label>
+                    <input type="text" id="group-name-input" autocomplete="off" placeholder="Đặt tên cho nhóm của bạn nhé" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Tạo nhóm</button>
+            </form>
+        </div>
+    </div>
+    <!-- Group Chat Settings (KKT Style) -->
+    <div id="group-settings-screen" class="screen"></div>
+    <!-- Group Member Edit Modal -->
+    <div id="edit-group-member-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3 id="edit-group-member-title">Sửa thành viên nhóm</h3>
+            <form id="edit-group-member-form">
+                <input type="hidden" id="editing-member-id">
+                <div class="avatar-setting" style="justify-content: center;">
+                    <img src="" alt="Ảnh đại diện thành viên" id="edit-member-avatar-preview" class="avatar-preview"
+                         style="cursor: pointer;">
+                    <input type="file" id="edit-member-avatar-upload" accept="image/*" style="display:none;">
+                </div>
+                <div class="form-group">
+                    <label for="edit-member-group-nickname">Biệt danh trong nhóm</label>
+                    <input type="text" id="edit-member-group-nickname" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-member-real-name">tên thật</label>
+                    <input type="text" id="edit-member-real-name" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-member-persona">Persona</label>
+                    <textarea id="edit-member-persona" placeholder="Mô tả chi tiết tính cách, bối cảnh… của nhân vật."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+        </div>
+    </div>
+    <!-- Add Member to Group Action Sheet -->
+    <div id="add-member-actionsheet" class="action-sheet-overlay">
+        <div class="action-sheet">
+            <button class="action-sheet-button" id="invite-existing-member-btn">Mời nhân vật có sẵn</button>
+            <button class="action-sheet-button" id="create-new-member-btn">Tạo nhân vật mới vào nhóm</button>
+        </div>
+    </div>
+    <!-- Invite Existing Member Modal -->
+    <div id="invite-member-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Mời thành viên vào nhóm</h3>
+            <ul id="invite-member-selection-list"></ul>
+            <button class="btn btn-primary" id="confirm-invite-btn" style="margin-top: 20px;">Xác nhận mời</button>
+        </div>
+    </div>
+    <!-- Create New Member for Group Modal -->
+    <div id="create-member-for-group-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Tạo nhân vật mới và thêm vào nhóm</h3>
+            <form id="create-member-for-group-form">
+                <div class="avatar-setting" style="justify-content: center;">
+                    <img src="https://i.postimg.cc/Y96LPskq/o-o-2.jpg" alt="Ảnh đại diện thành viên mới"
+                         id="create-group-member-avatar-preview" class="avatar-preview" style="cursor: pointer;">
+                    <input type="file" id="create-group-member-avatar-upload" accept="image/*" style="display:none;">
+                </div>
+                <div class="form-group">
+                    <label for="create-group-member-nickname">Biệt danh trong nhóm</label>
+                    <input type="text" id="create-group-member-nickname" required>
+                </div>
+                <div class="form-group">
+                    <label for="create-group-member-realname">tên thật</label>
+                    <input type="text" id="create-group-member-realname" required>
+                </div>
+                <div class="form-group">
+                    <label for="create-group-member-persona">Persona</label>
+                    <textarea id="create-group-member-persona" placeholder="Mô tả chi tiết tính cách, bối cảnh… của nhân vật."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Tạo và thêm vào</button>
+            </form>
+        </div>
+    </div>
+    <!-- Memory Journal Screen -->
+    <div id="memory-journal-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="chat-room-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title">Nhật ký hồi ức</h1>
+            </div>
+            <div class="action-btn-group">
+                <button class="action-btn" id="journal-manage-btn" title="Quản lý nhật ký">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                    </svg>
+                </button>
+                <button class="action-btn" id="journal-cancel-manage-btn" title="Hủy" style="display: none; font-size: 14px; width: auto; padding: 0 8px;">
+                    Hủy
+                </button>
+                <button class="action-btn" id="bind-journal-worldbook-btn" title="Liên kết world book">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                </button>
+                <button class="action-btn" id="generate-new-journal-btn" title="Tạo nhật ký mới">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <main class="content">
+            <ul class="list-container" id="journal-list-container">
+                <!-- Journal cards will be rendered here -->
+            </ul>
+            <div class="placeholder-text" id="no-journals-placeholder" style="display: none;">
+                <p>Chưa có nhật ký nào~</p>
+                <p>Bấm “dấu +” góc trên bên phải để tạo bài đầu tiên nhé!</p>
+            </div>
+        </main>
+        
+        <!-- Thanh thao tác chọn nhiều nhật ký -->
+        <div id="journal-multi-select-bar" style="display: none;">
+            <span id="journal-select-count">Đã chọn 0 bài</span>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-danger btn-small" id="journal-batch-delete-btn">Xóa</button>
+                <button class="btn btn-primary btn-small" id="journal-merge-btn">Gộp rút gọn</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memory Journal Detail Screen -->
+    <div id="memory-journal-detail-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="memory-journal-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title">Chi tiết nhật ký</h1>
+            </div>
+            <button class="action-btn" id="edit-journal-detail-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.13,5.12L18.88,8.87M3,17.25V21H6.75L17.81,9.94L14.06,6.19L3,17.25Z" /></svg>
+            </button>
+        </header>
+        <main class="content" style="padding: 20px; font-family: 'Georgia', 'Times New Roman', serif;">
+            <h2 id="journal-detail-title" style="margin-top: 0; font-size: 22px;"></h2>
+            <p id="journal-detail-meta" style="font-size: 12px; color: #aaa; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;"></p>
+            <div id="journal-detail-content" style="line-height: 1.7; white-space: pre-wrap; font-size: 16px;"></div>
+        </main>
+    </div>
+
+    <!-- Peek Steps App Screen -->
+    <div id="peek-steps-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="peek-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title">Số bước</h1>
+            </div>
+            <div class="placeholder"></div> <!-- To balance the header -->
+        </header>
+        <main class="content">
+            <div class="steps-header">
+                <img src="https://i.postimg.cc/Y96LPskq/o-o-2.jpg" alt="Char Avatar" class="steps-header-avatar" id="steps-char-avatar">
+                <span class="steps-header-name" id="steps-char-name">Char</span>
+            </div>
+
+            <div class="steps-progress-container">
+                <div class="steps-progress-circle" id="steps-progress-ring"></div>
+                <div class="steps-progress-inner">
+                    <div class="steps-count" id="steps-current-count">4321</div>
+                    <div class="steps-label">/ 6000 bước</div>
+                </div>
+            </div>
+
+            <div class="steps-module">
+                <h3 class="steps-module-title">Lộ trình hoạt động gần đây</h3>
+                <ul class="activity-track-list" id="activity-track-list">
+                    <li class="activity-track-item">10:00 AM - Quán cà phê</li>
+                    <li class="activity-track-item">01:30 PM - Thư viện trung tâm</li>
+                    <li class="activity-track-item">06:00 PM - Công viên ven sông</li>
+                    <li class="activity-track-item">07:00 PM - Phòng gym</li>
+                    <li class="activity-track-item">08:30 PM - Siêu thị</li>
+                    <li class="activity-track-item">09:00 PM - Về nhà</li>
+                </ul>
+            </div>
+            <div class="steps-annotation" id="steps-annotation-content">
+                “Hôm nay đi bộ khá nhiều, nhưng thấy rất trọn vẹn. Nhất là cuốn sách tìm được ở thư viện chiều nay, chắc đọc được lâu lắm.”
+            </div>
+        </main>
+    </div>
+
+    <div id="peek-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="chat-room-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title">Ta - điện thoại</h1>
+            </div>
+            <div class="action-btn-group">
+                <button class="action-btn" id="peek-batch-btn" title="Tạo hàng loạt" style="font-size: 14px; width: auto; padding: 0 8px;">Hàng loạt</button>
+                <button class="action-btn" id="peek-settings-btn" title="Cài đặt">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="content" style="padding: 50px 0; justify-content: flex-start; align-items: center;">
+            <!-- Content rendered by renderPeekScreen() -->
+        </main>
+
+        <!-- Thanh thao tác tạo hàng loạt -->
+        <div id="peek-batch-bar" style="display: none; position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 15px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100; justify-content: space-between; align-items: center;">
+            <span id="peek-batch-count" style="font-size: 14px; color: #333; font-weight: bold;">Đã chọn 0 ứng dụng</span>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-neutral btn-small" id="peek-batch-cancel-btn" style="margin: 0;">Hủy</button>
+                <button class="btn btn-primary btn-small" id="peek-batch-start-btn" style="margin: 0;">Bắt đầu tạo</button>
+            </div>
+        </div>
+    </div>
+
+<div id="storage-analysis-screen" class="screen">
+    <header class="app-header">
+        <button class="back-btn" data-target="home-screen">‹</button>
+        <div class="title-container">
+            <h1 class="title">Phân tích lưu trữ</h1>
+        </div>
+        <div class="placeholder"></div>
+    </header>
+    <main class="content" style="flex-direction: column; justify-content: flex-start; padding: 20px; gap: 20px;">
+        <div id="storage-total-size-container" style="text-align: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; margin-bottom: 10px;">
+            <span style="font-size: 14px; color: #888;">Tổng dung lượng đã dùng</span>
+            <h2 id="storage-total-size" style="margin: 4px 0 0 0; font-size: 24px; color: #333; font-weight: 600;">---</h2>
+            <button id="open-clean-cache-btn" class="btn btn-secondary" style="margin-top: 15px; padding: 8px 16px; font-size: 14px; border-radius: 20px;">🧹 Dọn bộ nhớ đệm ảnh</button>
+        </div>
+        <div id="storage-details-list" style="width: 100%; overflow-y: auto;"></div>
+    </main>
+</div>
+
+
+
+<div id="peek-messages-screen" class="screen">
+
+        <header class="app-header">
+            <button class="back-btn" data-target="peek-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title">Ta - tin nhắn</h1>
+            </div>
+            <button class="action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path></svg>
+            </button>
+        </header>
+        <main class="content">
+            <ul class="list-container" id="peek-chat-list-container">
+                <!-- Simulated chat list will be rendered here -->
+            </ul>
+        </main>
+    </div>
+
+    <!-- Peek Conversation Screen -->
+    <div id="peek-conversation-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="peek-messages-screen">‹</button>
+            <div class="title-container">
+                <h1 class="title" id="peek-conversation-title">...</h1>
+            </div>
+            <button class="action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path></svg>
+            </button>
+        </header>
+        <main class="content">
+            <div class="message-area" id="peek-message-area">
+                <!-- Simulated messages will be rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Peek Memos Screen -->
+    <div id="peek-memos-screen" class="screen"></div>
+
+    <!-- Peek Memo Detail Screen -->
+    <div id="peek-memo-detail-screen" class="screen"></div>
+
+    <!-- Peek Cart Screen -->
+    <div id="peek-cart-screen" class="screen"></div>
+
+    <!-- Peek Transfer Station Screen -->
+    <div id="peek-transfer-station-screen" class="screen"></div>
+
+    <!-- Peek Browser Screen -->
+    <div id="peek-browser-screen" class="screen"></div>
+
+    <!-- Peek Drafts Screen -->
+    <div id="peek-drafts-screen" class="screen"></div>
+
+    <div id="peek-album-screen" class="screen">
+        <header class="app-header">
+            <button class="back-btn" data-target="peek-screen">‹</button>
+            <div class="title-container"><h1 class="title">Album</h1></div>
+            <button class="action-btn" id="refresh-album-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path></svg></button>
+        </header>
+        <main class="content">
+            <div class="album-grid">
+                <p class="placeholder-text">Đang tạo nội dung album...</p>
+            </div>
+        </main>
+    </div>
+ 
+    <!-- Forwarded Chat Modal -->
+    <div id="forwarded-chat-modal" class="modal-overlay">
+        <div class="modal-window" style="max-height: 80vh; display: flex; flex-direction: column; padding: 0; overflow: hidden; background: #f5f5f5;">
+            <div style="padding: 15px; background: #fff; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+                <h3 id="forwarded-chat-modal-title" style="margin: 0; font-size: 16px;">Lịch sử chat</h3>
+                <button id="close-forwarded-chat-btn" class="icon-btn-simple" style="color: #999;">✕</button>
+            </div>
+            <div id="forwarded-chat-content" style="flex: 1; overflow-y: auto; padding: 15px; font-size: 14px; line-height: 1.6; color: #333;">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Peek Unlock Screen (Social Media) -->
+    <div id="peek-unlock-screen" class="screen">
+        <!-- Content will be dynamically rendered by renderPeekUnlock() -->
+    </div>
+
+    <!-- Peek Bag Screen -->
+    <div id="peek-bag-screen" class="screen">
+        <!-- Content will be dynamically rendered by renderPeekBag() -->
+    </div>
+ 
+    <div id="peek-confirm-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Có muốn nhìn lén điện thoại của ta không?</h3>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="peek-confirm-yes" class="btn btn-primary" style="flex: 1;">Có</button>
+                <button id="peek-confirm-no" class="btn btn-neutral" style="flex: 1;">Không</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Peek Action Sheet -->
+    <div id="peek-actionsheet" class="action-sheet-overlay">
+        <div class="action-sheet">
+            <button class="action-sheet-button" id="peek-menu-phone-btn">Nhìn lén điện thoại</button>
+            <button class="action-sheet-button" id="peek-menu-moments-btn">Bài đăng</button>
+            <button class="action-sheet-button danger" id="peek-menu-cancel-btn">Hủy</button>
+        </div>
+    </div>
+
+    <!-- Moments Screen -->
+    <div id="moments-screen" class="screen">
+        <header class="moments-header" id="moments-header">
+            <button class="back-btn" data-target="chat-room-screen">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="title-container">
+                <h1 class="title" id="moments-title" style="opacity: 0; transition: opacity 0.3s;">Bài đăng</h1>
+            </div>
+            <div class="action-btn-group">
+                <button class="action-btn" id="moments-refresh-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                </button>
+            </div>
+        </header>
+        <main class="content moments-content" id="moments-content-area" style="padding: 0;">
+            <div class="moments-cover-area">
+                <img src="" alt="Cover" class="moments-cover-img" id="moments-cover-img">
+                <div class="moments-user-info">
+                    <span class="moments-user-name" id="moments-user-name">Name</span>
+                    <img src="" alt="Avatar" class="moments-user-avatar" id="moments-user-avatar">
+                </div>
+                <div class="moments-user-signature" id="moments-user-signature"></div>
+            </div>
+            <div class="moments-feed" id="moments-feed-container">
+                <!-- Moments will be rendered here -->
+                <div style="text-align: center; padding: 50px; color: #999;">Chưa có bài đăng</div>
+            </div>
+        </main>
+        
+        <!-- Comment Input Area -->
+        <div class="moments-comment-input-area" id="moments-comment-input-area" style="display: none;">
+            <input type="text" id="moments-comment-input" placeholder="Bình luận..." enterkeyhint="send">
+            <button id="moments-comment-send-btn" class="btn btn-primary btn-small">Gửi</button>
+        </div>
+    </div>
+
+    <!-- Video Call Screens & Modals -->
+    
+    <!-- SCENE 1: Giao diện tải/kết nối -->
+    <div id="vc-scene-loading" class="vc-scene vc-hidden">
+        <div class="vc-center-wrapper">
+            <div class="vc-connection-wrapper">
+                <!-- AI -->
+                <div class="vc-avatar-box">
+                    <div class="vc-avatar ai" id="vc-loading-char-avatar"></div>
+                    <div class="vc-avatar-label" id="vc-loading-char-name" style="color:var(--vc-ai-color)">AI</div>
+                </div>
+
+                <!-- Cầu tín hiệu -->
+                <div class="vc-signal-bridge">
+                    <svg class="vc-ekg-svg" viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="vcSignalGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:var(--vc-ai-color); stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--vc-user-color); stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path class="vc-ekg-line" d="M0,20 L10,20 L15,5 L20,35 L25,20 L40,20 L45,10 L50,30 L55,20 L75,20 L80,5 L85,35 L90,20 L100,20" />
+                        <path class="vc-ekg-line ghost" d="M0,20 L10,20 L15,8 L20,32 L25,20 L40,20 L45,12 L50,28 L55,20 L75,20 L80,8 L85,32 L90,20 L100,20" />
+                    </svg>
+                </div>
+
+                <!-- User -->
+                <div class="vc-avatar-box">
+                    <div class="vc-avatar user" id="vc-loading-user-avatar"></div>
+                    <div class="vc-avatar-label" style="color:var(--vc-user-color)">YOU</div>
+                </div>
+            </div>
+
+            <!-- Vùng chữ trạng thái -->
+            <div class="vc-status-display">
+                <div class="vc-status-text" id="vc-status-main">Đang thiết lập đường dây cuộc gọi...</div>
+                <div class="vc-sub-status" id="vc-status-sub">HANDSHAKE_INIT</div>
+            </div>
+        </div> 
+
+        <!-- Dưới: đặt nút ở ngoài, giữ ở đáy màn hình -->
+        <div class="vc-loading-footer">
+            <div class="vc-c-btn vc-btn-hangup" id="vc-loading-hangup-btn">
+                <div class="vc-c-icon-box">
+                    <div class="vc-icon-hangup"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCENE 2: Giao diện cuộc gọi -->
+    <div id="vc-scene-call" class="vc-scene vc-hidden">
+        <div class="vc-call-header">
+            <div class="vc-contact-info">
+                <div class="name" id="vc-call-name">Unknown</div>
+                <div class="time" id="vc-call-timer">00:00:00</div>
+            </div>
+            <div class="vc-header-avatar" id="vc-call-avatar">
+                <div class="vc-online-dot"></div>
+            </div>
+        </div>
+
+        <div class="vc-chat-area" id="vc-chat-container">
+            <!-- Tin đầu tiên được tự chèn -->
+        </div>
+
+        <div class="vc-controls-wrapper">
+            <div class="vc-controls">
+                <div class="vc-c-btn" id="vc-camera-toggle-btn">
+                    <div class="vc-c-icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                        </svg>
+                    </div>
+                    <span class="vc-c-label">Camera</span>
+                </div>
+                <div class="vc-c-btn" id="vc-action-voice-btn">
+                     <div class="vc-c-icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                        </svg>
+                     </div>
+                    <span class="vc-c-label">Speak</span>
+                </div>
+                <div class="vc-c-btn vc-btn-hangup" id="vc-call-hangup-btn">
+                     <div class="vc-c-icon-box"><div class="vc-icon-hangup"></div></div>
+                    <span class="vc-c-label">End</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lớp phủ ô nhập khi gọi -->
+        <div id="vc-input-overlay" class="vc-input-overlay" style="display: none;">
+            <div class="vc-input-box">
+                <input type="text" id="vc-input-text" placeholder="Nhập điều bạn muốn nói..." autocomplete="off">
+                <button id="vc-input-help-btn" title="Cách dùng">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Type Selection Modal -->
+    <div id="vc-type-modal" class="vc-type-modal">
+        <div class="vc-type-sheet">
+            <div class="vc-type-header">
+                <span class="vc-type-title">Bắt đầu gọi</span>
+                <button class="vc-type-close" id="vc-type-close-btn">×</button>
+            </div>
+            
+            <button class="vc-type-btn video" id="vc-start-video-btn">
+                <div class="vc-type-icon">📹</div>
+                <div class="vc-type-info">
+                    <span class="vc-type-label">Gọi video</span>
+                    <span class="vc-type-desc">Trải nghiệm hình ảnh nhập vai</span>
+                </div>
+            </button>
+            
+            <button class="vc-type-btn voice" id="vc-start-voice-btn">
+                <div class="vc-type-icon">📞</div>
+                <div class="vc-type-info">
+                    <span class="vc-type-label">Gọi thoại</span>
+                    <span class="vc-type-desc">Chỉ trò chuyện bằng giọng</span>
+                </div>
+            </button>
+            
+            <button class="vc-type-btn history" id="vc-history-btn">
+                <div class="vc-type-icon">📜</div>
+                <div class="vc-type-info">
+                    <span class="vc-type-label">Lịch sử cuộc gọi</span>
+                    <span class="vc-type-desc">Xem lịch sử trước đây</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Call History Modal -->
+    <div id="vc-history-modal" class="vc-type-modal">
+        <div class="vc-type-sheet" style="height: 70vh;">
+            <div class="vc-type-header">
+                <span class="vc-type-title">Lịch sử cuộc gọi</span>
+                <button class="vc-type-close" id="vc-history-close-btn">×</button>
+            </div>
+            <div id="vc-history-list" class="vc-history-list">
+                <!-- JS populated -->
+                <div class="vc-history-empty">Chưa có lịch sử cuộc gọi</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Detail Modal -->
+    <div id="vc-detail-modal" class="vc-type-modal">
+        <div class="vc-type-sheet" style="height: 80vh;">
+            <div class="vc-type-header">
+                <button class="vc-type-close" id="vc-detail-back-btn" style="font-size: 18px;">‹ Quay lại</button>
+                <span class="vc-type-title">Chi tiết cuộc gọi</span>
+                <button class="vc-type-close" id="vc-detail-close-btn">×</button>
+            </div>
+            <div id="vc-detail-content" class="vc-detail-content">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Incoming Call Notification (iOS Style) -->
+    <div id="vc-incoming-modal" class="vc-incoming-overlay">
+        <div class="vc-incoming-banner">
+            <div class="vc-incoming-content">
+                <div class="vc-incoming-avatar" id="vc-incoming-avatar"></div>
+                <div class="vc-incoming-info">
+                    <div class="vc-incoming-name" id="vc-incoming-name">Unknown</div>
+                    <div class="vc-incoming-type" id="vc-incoming-type">Lời mời gọi video...</div>
+                </div>
+            </div>
+            <div class="vc-incoming-actions">
+                <button class="vc-incoming-btn reject" id="vc-incoming-reject-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/></svg>
+                </button>
+                <button class="vc-incoming-btn accept" id="vc-incoming-accept-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Window (Mini Mode) -->
+    <div id="vc-floating-window" class="vc-floating-window" style="display: none;">
+        <div class="vc-float-avatar" id="vc-float-avatar"></div>
+        <div class="vc-float-timer" id="vc-float-timer">00:00</div>
+    </div>
+
+    <!-- New Peek Wallpaper Modal -->
+    <div id="peek-wallpaper-modal" class="modal-overlay">
+        <div class="modal-window peek-settings-window">
+            <div class="peek-settings-header">
+                <h3>Tùy chỉnh tạo nội dung</h3>
+                <p class="peek-settings-subtitle">Đặt số mục AI tạo mỗi lần</p>
+            </div>
+            
+            <div class="peek-settings-content">
+                <div class="peek-settings-group">
+                    <div class="peek-settings-group-title">Xã hội & tương tác</div>
+                    <div id="peek-gen-social-list" class="peek-settings-list">
+                        <!-- JS Chèn động -->
+                    </div>
+                </div>
+
+                <div class="peek-settings-group">
+                    <div class="peek-settings-group-title">Đời sống cá nhân</div>
+                    <div id="peek-gen-life-list" class="peek-settings-list">
+                        <!-- JS Chèn động -->
+                    </div>
+                </div>
+
+                <div class="peek-settings-group">
+                    <div class="peek-settings-group-title">Công cụ khác</div>
+                    <div id="peek-gen-tools-list" class="peek-settings-list">
+                        <!-- JS Chèn động -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="peek-settings-footer">
+                <button id="save-peek-settings-btn" class="btn btn-primary">Lưu cấu hình</button>
+                <button onclick="document.getElementById('peek-wallpaper-modal').classList.remove('visible')" class="btn btn-neutral">Hủy</button>
+            </div>
+        </div>
+    </div>
+<!-- Shop Screen -->
+<div id="shop-screen" class="screen"></div>
+
+<!-- Clean Image Cache Modal -->
+<div id="clean-image-cache-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Dọn bộ nhớ đệm ảnh</h3>
+        <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Chỉ dọn ảnh định dạng Base64 lưu trong máy, không ảnh hưởng link ảnh trên mạng.</p>
+        <div id="clean-cache-loading" style="text-align: center; padding: 20px; display: none;">
+            <div class="spinner" style="display: inline-block; border-color: var(--primary-color) transparent transparent transparent;"></div>
+            <p style="margin-top: 10px; font-size: 14px; color: #666;">Đang quét bộ nhớ đệm...</p>
+        </div>
+        <form id="clean-image-cache-form" style="display: none;">
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f9f9f9; border-radius: 8px;">
+                    <span>Lịch sử tạo ảnh <span id="size-generated-images" style="color: #888; font-size: 12px;">(Đang tính...)</span></span>
+                    <input type="checkbox" name="clean-category" value="generated" style="width: 18px; height: 18px;">
+                </label>
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f9f9f9; border-radius: 8px;">
+                    <span>Ảnh trong lịch sử chat <span id="size-chat-images" style="color: #888; font-size: 12px;">(Đang tính...)</span></span>
+                    <input type="checkbox" name="clean-category" value="chat" style="width: 18px; height: 18px;">
+                </label>
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f9f9f9; border-radius: 8px;">
+                    <span>Album nhân vật <span id="size-gallery-images" style="color: #888; font-size: 12px;">(Đang tính...)</span></span>
+                    <input type="checkbox" name="clean-category" value="gallery" style="width: 18px; height: 18px;">
+                </label>
+                <label style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f9f9f9; border-radius: 8px;">
+                    <span>Sticker <span id="size-sticker-images" style="color: #888; font-size: 12px;">(Đang tính...)</span></span>
+                    <input type="checkbox" name="clean-category" value="stickers" style="width: 18px; height: 18px;">
+                </label>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button type="submit" class="btn btn-danger" style="flex: 1;" id="confirm-clean-btn" disabled>Xác nhận dọn</button>
+                <button type="button" id="cancel-clean-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div id="peek-photo-modal" class="modal-overlay">
+        <div class="modal-window">
+            <div id="peek-photo-image-container">
+                <span class="placeholder-icon">🖼️</span>
+            </div>
+            <div id="peek-photo-description"></div>
+        </div>
+    </div>
+</div>
+
+    <!-- Full Image Viewer Modal -->
+    <div id="full-image-modal" class="modal-overlay" style="z-index: 20000; background: rgba(0,0,0,0.95);">
+        <div class="modal-window" style="background: transparent; box-shadow: none; width: 100%; height: 100%; max-width: none; padding: 0; display: flex; align-items: center; justify-content: center; position: relative;">
+            <img id="full-image-view" src="" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
+            <button id="close-full-image-btn" style="position: absolute; top: 40px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);">×</button>
+        </div>
+    </div>
+
+    <!-- AirDrop Modal -->
+    <div id="airdrop-modal" class="modal-overlay" style="z-index: 15000; align-items: flex-start; padding-top: 20px; background: transparent; pointer-events: none;">
+        <div class="modal-window" id="airdrop-window" style="width: 90%; max-width: 400px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 24px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; pointer-events: auto;">
+            <div id="airdrop-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; cursor: pointer;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#007AFF" class="bi bi-phone-vibrate" viewBox="0 0 16 16">
+                      <path d="M10 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4zM6 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H6z"/>
+                      <path d="M8 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM1.599 4.058a.5.5 0 0 1 .208.676A6.967 6.967 0 0 0 1 8c0 1.18.292 2.292.807 3.266a.5.5 0 0 1-.884.468A7.968 7.968 0 0 1 0 8c0-1.347.334-2.619.923-3.734a.5.5 0 0 1 .676-.208zm12.802 0a.5.5 0 0 1 .676.208A7.967 7.967 0 0 1 16 8a7.967 7.967 0 0 1-.923 3.734.5.5 0 0 1-.884-.468A6.967 6.967 0 0 0 15 8c0-1.18-.292-2.292-.807-3.266a.5.5 0 0 1 .208-.676zM3.057 5.534a.5.5 0 0 1 .284.648A4.986 4.986 0 0 0 3 8c0 .642.12 1.255.34 1.818a.5.5 0 1 1-.93.364A5.986 5.986 0 0 1 2 8c0-.769.145-1.505.41-2.182a.5.5 0 0 1 .647-.284zm9.886 0a.5.5 0 0 1 .648.284C13.855 6.495 14 7.231 14 8c0 .769-.145 1.505-.41 2.182a.5.5 0 0 1-.93-.364C12.88 9.255 13 8.642 13 8c0-.642-.12-1.255-.34-1.818a.5.5 0 0 1 .283-.648z"/>
+                    </svg>
+                </div>
+                <div style="flex: 1; text-align: left;">
+                    <div class="airdrop-title" style="margin: 0 0 4px 0; font-size: 18px; font-weight: bold; color: #000;">AirDrop</div>
+                    <p id="airdrop-subtitle" style="margin: 0; font-size: 14px; color: #666;">[Name] muốn chia sẻ 1 bức ảnh</p>
+                </div>
+            </div>
+            
+            <div id="airdrop-content-area">
+                <div id="airdrop-actions" style="display: flex; gap: 10px;">
+                    <button id="airdrop-reject-btn" class="btn btn-neutral" style="flex: 1; border-radius: 12px; padding: 12px; font-weight: bold; background: rgba(0,0,0,0.05); color: #007AFF;">Từ chối</button>
+                    <button id="airdrop-accept-btn" class="btn btn-primary" style="flex: 1; border-radius: 12px; padding: 12px; font-weight: bold; background: rgba(0,0,0,0.05); color: #007AFF;">Chấp nhận</button>
+                </div>
+
+                <div id="airdrop-loading" style="display: none; justify-content: center; align-items: center; gap: 8px; padding: 10px 0;">
+                    <svg id="airdrop-loading-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#007AFF" class="bi bi-phone-vibrate" viewBox="0 0 16 16" style="display: none;">
+                      <path d="M10 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4zM6 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H6z"/>
+                      <path d="M8 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM1.599 4.058a.5.5 0 0 1 .208.676A6.967 6.967 0 0 0 1 8c0 1.18.292 2.292.807 3.266a.5.5 0 0 1-.884.468A7.968 7.968 0 0 1 0 8c0-1.347.334-2.619.923-3.734a.5.5 0 0 1 .676-.208zm12.802 0a.5.5 0 0 1 .676.208A7.967 7.967 0 0 1 16 8a7.967 7.967 0 0 1-.923 3.734.5.5 0 0 1-.884-.468A6.967 6.967 0 0 0 15 8c0-1.18-.292-2.292-.807-3.266a.5.5 0 0 1 .208-.676zM3.057 5.534a.5.5 0 0 1 .284.648A4.986 4.986 0 0 0 3 8c0 .642.12 1.255.34 1.818a.5.5 0 1 1-.93.364A5.986 5.986 0 0 1 2 8c0-.769.145-1.505.41-2.182a.5.5 0 0 1 .647-.284zm9.886 0a.5.5 0 0 1 .648.284C13.855 6.495 14 7.231 14 8c0 .769-.145 1.505-.41 2.182a.5.5 0 0 1-.93-.364C12.88 9.255 13 8.642 13 8c0-.642-.12-1.255-.34-1.818a.5.5 0 0 1 .283-.648z"/>
+                    </svg>
+                    <div><span id="airdrop-loading-text" style="font-size: 16px; color: #333; font-weight: 500;">Đang thiết lập kết nối</span><span class="animated-dots"></span></div>
+                </div>
+                
+                <div id="airdrop-error" style="display: none; text-align: center; padding: 10px 0;">
+                    <p id="airdrop-error-text" style="color: #FF3B30; font-size: 14px; margin-bottom: 15px;"></p>
+                    <button id="airdrop-close-btn" class="btn btn-neutral" style="width: 100%; border-radius: 12px; padding: 12px; font-weight: bold; background: rgba(0,0,0,0.05); color: #007AFF;">Đóng</button>
+                </div>
+
+                <div id="airdrop-result-area" style="display: none; flex-direction: column; gap: 15px; margin-top: 10px;">
+                    <div style="width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: #f0f0f0; cursor: pointer;" id="airdrop-preview-container">
+                        <img id="airdrop-preview-img" src="" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div style="display: flex; justify-content: space-around; align-items: center;">
+                        <button id="airdrop-save-btn" class="icon-btn-simple" style="color: #007AFF; display: flex; flex-direction: column; align-items: center; gap: 5px;" title="Lưu">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        </button>
+                        <button id="airdrop-regenerate-btn" class="icon-btn-simple" style="color: #007AFF; display: flex; flex-direction: column; align-items: center; gap: 5px;" title="Tạo lại">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                        </button>
+                        <button id="airdrop-details-btn" class="icon-btn-simple" style="color: #007AFF; display: flex; flex-direction: column; align-items: center; gap: 5px;" title="Chi tiết">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        </button>
+                        <button id="airdrop-gallery-btn" class="icon-btn-simple" style="color: #007AFF; display: flex; flex-direction: column; align-items: center; gap: 5px;" title="Album">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4l2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"/></svg>
+                        </button>
+                        <button id="airdrop-result-close-btn" class="icon-btn-simple" style="color: #007AFF; display: flex; flex-direction: column; align-items: center; gap: 5px;" title="Đóng">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AirDrop Details Modal -->
+    <div id="airdrop-details-modal" class="modal-overlay" style="z-index: 15005;">
+        <div class="modal-window">
+            <h3>Chi tiết prompt tạo ảnh</h3>
+            <div class="form-group">
+                <label>Prompt (Prompt)</label>
+                <textarea id="airdrop-prompt-textarea" rows="8" style="width: 100%; border: 1px solid #eee; border-radius: 8px; padding: 8px;"></textarea>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="airdrop-prompt-save-btn" class="btn btn-primary" style="flex: 1;">Lưu thay đổi</button>
+                <button id="airdrop-prompt-close-btn" class="btn btn-neutral" style="flex: 1;">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AirDrop History Gallery Modal -->
+    <div id="airdrop-history-modal" class="modal-overlay" style="z-index: 15002;">
+        <div class="modal-window" style="max-height: 85vh; display: flex; flex-direction: column; padding: 0; overflow: hidden;">
+            <div style="padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fff;">
+                <h3 style="margin: 0;">TA - album riêng tư</h3>
+                <button id="airdrop-history-close-btn" class="icon-btn-simple" style="color: #999;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+            <div id="airdrop-history-grid" style="flex: 1; overflow-y: auto; padding: 15px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #f5f5f5;">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </div>
+ 
+<!-- Polaroid Customization Modal -->
+<div id="heart-photo-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Polaroid tùy chỉnh</h3>
+        <form id="heart-photo-form">
+            <div id="heart-photo-preview" style="width: 150px; height: 150px; border: 2px dashed #ddd; border-radius: 10px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: #aaa; background-color: #f9f9f9; background-size: cover; background-position: center;">
+                <span>Xem trước</span>
+            </div>
+            <div class="form-group">
+                <label for="heart-photo-url-input">ẢnhURL</label>
+                <input type="url" id="heart-photo-url-input" class="form-group" placeholder="Dán ảnhURL">
+            </div>
+            <p style="text-align:center; color:#888; margin: -10px 0 15px;">hoặc</p>
+            <input type="file" id="heart-photo-file-upload" accept="image/*" style="display:none;">
+            <label for="heart-photo-file-upload" class="btn btn-secondary" style="width:100%; margin-bottom: 20px;">Tải từ máy</label>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+    </div>
+</div>
+<!-- Generate Journal Modal -->
+<div id="generate-journal-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Chỉ định phạm vi tóm tắt</h3>
+        <form id="generate-journal-form">
+            <div id="journal-range-info" style="font-size: 12px; color: #888; text-align: center; margin-bottom: 15px;"></div>
+            <div class="form-group">
+                <label for="journal-range-start">Tin bắt đầu (số thứ tự)</label>
+                <input type="number" id="journal-range-start" placeholder="Ví dụ:1" required>
+            </div>
+            <div class="form-group">
+                <label for="journal-range-end">Tin kết thúc (số thứ tự)</label>
+                <input type="number" id="journal-range-end" placeholder="Ví dụ:100" required>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
+                <label for="journal-include-favorited" style="font-size: 14px; color: #555;">Tham khảo nhật ký đã yêu thích</label>
+                <label class="kkt-switch">
+                    <input type="checkbox" id="journal-include-favorited">
+                    <span class="kkt-slider"></span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Tạo</button>
+        </form>
+    </div>
+</div>
+
+<!-- Journal Style Selection Modal -->
+<div id="journal-style-selection-modal" class="modal-overlay">
+    <div class="modal-window" style="max-height: 80vh; display: flex; flex-direction: column;">
+        <h3>Cài đặt phong cách nhật ký</h3>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 10px; color: var(--primary-color);">Chọn chế độ phong cách</label>
+            <div class="radio-group-vertical" style="display: flex; flex-direction: column; gap: 10px;">
+                <label class="radio-label" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="radio" name="journal-style-mode" value="default" checked>
+                    <span>Phong cách mặc định (kể lể ngôi thứ nhất)</span>
+                </label>
+                <label class="radio-label" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="radio" name="journal-style-mode" value="summary">
+                    <span>Tóm tắt (ghi chép khách quan ngôi thứ ba)</span>
+                </label>
+                <label class="radio-label" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="radio" name="journal-style-mode" value="custom">
+                    <span>Tùy chỉnh (dùng world book định nghĩa phong cách)</span>
+                </label>
+            </div>
+        </div>
+        
+        <div id="journal-custom-style-container" style="display: none; flex: 1; min-height: 200px; flex-direction: column; margin-top: 10px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 10px; font-size: 14px; color: #666;">Chọn world book làm định nghĩa phong cách</label>
+            <ul id="journal-style-worldbook-list" class="list-container" style="flex: 1; overflow-y: auto; padding: 0; margin: 0; border: 1px solid #eee; border-radius: 8px; padding: 5px;">
+                <!-- World book items will be rendered here -->
+            </ul>
+        </div>
+
+        <p style="font-size: 12px; color: #999; margin-top: 10px; text-align: center;">* Khi tạo sẽ tự kèm world book chung đã liên kết với phòng chat làm bối cảnh</p>
+
+        <button class="btn btn-primary" id="save-journal-style-btn" style="margin-top: 10px;">Lưu cài đặt</button>
+    </div>
+</div>
+
+<!-- NEW: Delete History Chunk Modals -->
+<div id="delete-chunk-modal" class="modal-overlay">
+    <div class="modal-window" style="max-height: 80vh; display: flex; flex-direction: column;">
+        <h3>Quản lý lịch sử</h3>
+        <div id="delete-chunk-range-info" style="font-size: 12px; color: #888; text-align: center; margin-bottom: 5px;"></div>
+        <div id="delete-chunk-hidden-info" style="font-size: 12px; color: #d32f2f; text-align: center; margin-bottom: 15px; min-height: 18px;"></div>
+        
+        <form id="delete-chunk-form" onsubmit="event.preventDefault();">
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 1;">
+                    <label for="delete-range-start">Số thứ tự bắt đầu</label>
+                    <input type="number" id="delete-range-start" placeholder="1" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label for="delete-range-end">Số thứ tự kết thúc</label>
+                    <input type="number" id="delete-range-end" placeholder="100" required>
+                </div>
+            </div>
+        </form>
+
+        <div id="delete-chunk-preview-box" style="flex: 1; overflow-y: auto; background: #f9f9f9; border-radius: 8px; padding: 10px; margin: 10px 0; font-size: 12px; line-height: 1.5; min-height: 100px; border: 1px solid #eee;">
+            <p style="color: #999; text-align: center; margin-top: 30px;">Nhập phạm vi để xem trước</p>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <button id="btn-block-range" class="btn btn-neutral" style="flex: 1; font-size: 13px;">🚫 Ẩn</button>
+            <button id="btn-restore-range" class="btn btn-neutral" style="flex: 1; font-size: 13px;">✅ Khôi phục</button>
+            <button id="btn-delete-range" class="btn btn-danger" style="flex: 1; font-size: 13px;">🗑️ Xóa</button>
+        </div>
+        <button id="close-delete-modal-btn" class="btn btn-neutral" style="margin-top: 10px; width: 100%;">Đóng</button>
+    </div>
+</div>
+
+<div id="share-post-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Có chia sẻ cho người khác không?</h3>
+        <div style="margin: 20px 0;">
+            <details>
+                <summary style="font-weight: 500; cursor: pointer; color: var(--primary-color);">Chọn người chia sẻ</summary>
+                <ul id="share-char-list" class="binding-list" style="margin-top: 10px; max-height: 40vh; overflow-y: auto;">
+
+                </ul>
+            </details>
+        </div>
+        <button id="confirm-share-btn" class="btn btn-primary" style="margin-top: 15px;">Xác nhận gửi</button>
+    </div>
+</div>
+
+
+<div id="delete-chunk-confirm-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>⚠️ Cực kỳ nguy hiểm</h3>
+        <p style="margin: 15px 0; line-height: 1.6; color: #d32f2f; font-weight: bold;">
+            Bạn sắp xóa vĩnh viễn lịch sử chat trong phạm vi đã chọn.<br>
+            Không thể hoàn tác!
+        </p>
+        <p style="font-size: 13px; color: #666;">Nếu chỉ không muốn AI đọc những tin này, nên dùng chức năng “Ẩn”.</p>
+        
+        <div style="display: flex; gap: 10px; margin-top: 25px;">
+            <button id="confirm-delete-chunk-btn" class="btn btn-danger" style="flex: 1;">Xác nhận xóa</button>
+            <button id="cancel-delete-chunk-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+        </div>
+    </div>
+</div>
+
+<div id="bubble-presets-modal" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;z-index:9999;"><div class="modal-window" style="max-width:520px;background:var(--panel-bg,#fff);padding:14px;border-radius:10px;box-shadow:0 12px 36px rgba(10,10,20,0.12);"><h3 style="margin:0 0 10px 0;font-size:16px;">Quản lý preset bong bóng</h3><div id="bubble-presets-list" style="max-height:340px; overflow:auto; margin-bottom:12px;"></div><div style="display:flex;gap:8px;justify-content:flex-end;"><button type="button" id="close-presets-modal" class="btn btn-primary" style="padding:8px 12px;border-radius:8px;">Đóng</button></div></div></div>
+
+<input type="file" id="bubble-preset-import-input" accept=".json,.txt,.doc,.docx" style="display: none;">
+
+<div id="export-bubble-preset-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Xuất preset bong bóng</h3>
+        <div class="form-group">
+            <label>Tên preset</label>
+            <input type="text" id="export-bubble-preset-name" placeholder="Đặt tên cho preset" required>
+        </div>
+        <div class="form-group">
+            <label>Có xuất kèm các cài đặt trang trí hiện tại không?</label>
+            <div style="display: flex; gap: 10px; margin-top: 5px;">
+                <button type="button" id="export-bubble-include-yes" class="btn btn-neutral" style="flex: 1;">Có</button>
+                <button type="button" id="export-bubble-include-no" class="btn btn-neutral" style="flex: 1;">Không</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Ghi chú tác giả (ví dụ giới hạn đăng lại/sửa lại, không bắt buộc)</label>
+            <textarea id="export-bubble-author-note" rows="3" placeholder="Để trống thì không có"></textarea>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="button" id="confirm-export-bubble-btn" class="btn btn-primary" style="flex: 1;" disabled>Tải xuống</button>
+            <button type="button" id="cancel-export-bubble-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+        </div>
+    </div>
+</div>
+<div id="mypersona-presets-modal" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;z-index:9999;"><div class="modal-window" style="max-width:520px;background:var(--panel-bg,#fff);padding:14px;border-radius:10px;box-shadow:0 12px 36px rgba(10,10,20,0.12);"><h3 style="margin:0 0 10px 0;font-size:16px;">Quản lý preset persona của tôi</h3><div id="mypersona-presets-list" style="max-height:340px; overflow:auto; margin-bottom:12px;"></div><div style="display:flex;gap:8px;justify-content:flex-end;"><button type="button" id="mypersona-close-modal" class="btn btn-primary" style="padding:8px 12px;border-radius:8px;">Đóng</button></div></div></div>
+<div id="global-css-presets-modal" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;z-index:9999;"><div class="modal-window" style="max-width:520px;background:var(--panel-bg,#fff);padding:14px;border-radius:10px;box-shadow:0 12px 36px rgba(10,10,20,0.12);"><h3 style="margin:0 0 10px 0;font-size:16px;">Quản lý preset CSS toàn cục</h3><div id="global-css-presets-list" style="max-height:340px; overflow:auto; margin-bottom:12px;"></div><div style="display:flex;gap:8px;justify-content:flex-end;"><button type="button" id="global-css-close-modal" class="btn btn-primary" style="padding:8px 12px;border-radius:8px;">Đóng</button></div></div></div>
+<div id="font-presets-modal" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;z-index:9999;"><div class="modal-window" style="max-width:520px;background:var(--panel-bg,#fff);padding:14px;border-radius:10px;box-shadow:0 12px 36px rgba(10,10,20,0.12);"><h3 style="margin:0 0 10px 0;font-size:16px;">Quản lý preset font</h3><div id="font-presets-list" style="max-height:340px; overflow:auto; margin-bottom:12px;"></div><div style="display:flex;gap:8px;justify-content:flex-end;"><button type="button" id="font-close-modal" class="btn btn-primary" style="padding:8px 12px;border-radius:8px;">Đóng</button></div></div></div>
+<div id="sound-presets-modal" class="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;z-index:9999;"><div class="modal-window" style="max-width:520px;background:var(--panel-bg,#fff);padding:14px;border-radius:10px;box-shadow:0 12px 36px rgba(10,10,20,0.12);"><h3 style="margin:0 0 10px 0;font-size:16px;">Quản lý preset âm báo</h3><div id="sound-presets-list" style="max-height:340px; overflow:auto; margin-bottom:12px;"></div><div style="display:flex;gap:8px;justify-content:flex-end;"><button type="button" id="sound-close-modal" class="btn btn-primary" style="padding:8px 12px;border-radius:8px;">Đóng</button></div></div></div>
+<input type="file" id="import-data-input" accept=".ee" style="display: none;">
+<div id="storage-screen" class="screen"></div>
+<input type="file" id="character-card-input" accept="image/png,application/json" style="display: none;">
+    <!-- Widget Add Modal (Bottom Sheet Style) -->
+    <div id="widget-add-modal" class="modal-overlay bottom-sheet-overlay" style="z-index: 10000;">
+        <div class="bottom-sheet-window">
+            <div class="bottom-sheet-handle"></div>
+            <div class="bottom-sheet-header">
+                <div class="header-top">
+                    <h3 class="title">Thêm widget</h3>
+                    <button id="close-widget-add-modal-btn" class="close-btn">✕</button>
+                </div>
+                <div class="search-bar-container">
+                    <div class="search-input-wrapper">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="widget-add-search-input" placeholder="Tìm tên widget...">
+                    </div>
+                </div>
+                <div class="category-tabs" id="widget-add-category-tabs">
+                    <div class="category-tab active" data-size="all">Tất cả</div>
+                    <div class="category-tab" data-size="1x1">1x1</div>
+                    <div class="category-tab" data-size="2x2">2x2</div>
+                    <div class="category-tab" data-size="4x2">4x2</div>
+                    <div class="category-tab" data-size="4x4">4x4</div>
+                </div>
+            </div>
+            <div id="widget-add-list" class="widget-add-grid">
+                <!-- JS populated -->
+            </div>
+        </div>
+    </div>
+
+<!-- Widget Variable Edit Modal -->
+<div id="widget-var-edit-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Sửa nội dung widget</h3>
+        <form id="widget-var-edit-form">
+            <input type="hidden" id="widget-var-instance-id">
+            <input type="hidden" id="widget-var-key">
+            <input type="hidden" id="widget-var-type">
+            
+            <div id="widget-var-image-preview" style="display:none; width: 100px; height: 100px; border: 2px dashed #ddd; border-radius: 10px; margin: 0 auto 15px; align-items: center; justify-content: center; color: #aaa; background-size: cover; background-position: center;">
+                <span>Xem trước</span>
+            </div>
+            
+            <div class="form-group">
+                <label id="widget-var-input-label">nội dung</label>
+                <input type="text" id="widget-var-input" class="form-group" placeholder="Nhập nội dung hoặc ảnhURL">
+            </div>
+            
+            <div id="widget-var-file-upload-container" style="display:none;">
+                <p style="text-align:center; color:#888; margin: -10px 0 15px;">hoặc</p>
+                <input type="file" id="widget-var-file-upload" accept="image/*" style="display:none;">
+                <label for="widget-var-file-upload" class="btn btn-secondary" style="width:100%; margin-bottom: 20px;">Tải từ máy</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="button" id="widget-var-cancel-btn" class="btn btn-neutral" style="margin-top: 10px;">Hủy</button>
+        </form>
+    </div>
+</div>
+
+<!-- INS Widget Avatar Modal -->
+<div id="ins-widget-avatar-modal" class="modal-overlay">
+    <div class="modal-window">
+        <h3>Đổi ảnh đại diện</h3>
+        <form id="ins-widget-avatar-form">
+            <input type="hidden" id="ins-widget-avatar-target">
+            <div id="ins-widget-avatar-preview" style="width: 100px; height: 100px; border: 2px dashed #ddd; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: #aaa; background-color: #f9f9f9; background-size: cover; background-position: center;">
+                <span>Xem trước</span>
+            </div>
+            <div class="form-group">
+                <label for="ins-widget-avatar-url-input">Ảnh đại diệnURL</label>
+                <input type="url" id="ins-widget-avatar-url-input" class="form-group" placeholder="Dán ảnhURL">
+            </div>
+            <p style="text-align:center; color:#888; margin: -10px 0 15px;">hoặc</p>
+            <input type="file" id="ins-widget-avatar-file-upload" accept="image/*" style="display:none;">
+            <label for="ins-widget-avatar-file-upload" class="btn btn-secondary" style="width:100%; margin-bottom: 20px;">Tải từ máy</label>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+    </div>
+</div>
+    <!-- More Card Background Modal -->
+    <div id="more-card-bg-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Đổi nền thẻ cá nhân</h3>
+            <form id="more-card-bg-form">
+                <div id="more-card-bg-preview" style="width: 100%; height: 150px; border: 2px dashed #ddd; border-radius: 10px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: #aaa; background-size: cover; background-position: center;">
+                    <span>Xem trước</span>
+                </div>
+                <div class="form-group">
+                    <label for="more-card-bg-url-input">ẢnhURL</label>
+                    <input type="url" id="more-card-bg-url-input" class="form-group" placeholder="Dán ảnhURL">
+                </div>
+                <p style="text-align:center; color:#888; margin: -10px 0 15px;">hoặc</p>
+                <input type="file" id="more-card-bg-file-upload" accept="image/*" style="display:none;">
+                <label for="more-card-bg-file-upload" class="btn btn-secondary" style="width:100%; margin-bottom: 20px;">Tải từ máy</label>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Character Gallery Modal -->
+    <div id="char-gallery-modal" class="modal-overlay">
+        <div class="modal-window" style="max-height: 80vh; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;">Quản lý album nhân vật</h3>
+                <div class="gallery-actions" style="display: flex; gap: 8px;">
+                    <button id="add-gallery-item-btn" class="icon-btn-simple" title="Thêm ảnh">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    </button>
+                    <button id="batch-add-gallery-btn" class="icon-btn-simple" title="Nhập hàng loạt">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </button>
+                    <div style="width: 1px; background: #eee; margin: 0 4px;"></div>
+                    <button id="load-gallery-preset-btn" class="icon-btn-simple" title="Tải preset">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M4 15h2v3h12v-3h2v3c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2m4.41-7.59L11 7.83V1h2v6.83l2.59-2.58L17 6.66l-5 5-5-5 1.41-1.41z"/></svg>
+                    </button>
+                    <button id="save-gallery-preset-btn" class="icon-btn-simple" title="Lưu thành preset">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                    </button>
+                    <div style="width: 1px; background: #eee; margin: 0 4px;"></div>
+                    <button id="export-gallery-btn" class="icon-btn-simple" title="Xuất album">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div style="font-size: 12px; color: #666; margin-bottom: 10px; background: #f9f9f9; padding: 8px; border-radius: 6px;">
+                Ảnh thêm ở đây sẽ được dùng làm “album thật” của nhân vật.<br>
+                Khi bật “khớp album thật”, nếu [照片/视频：内容] mà AI gửi có “nội dung” khớp với【tên ảnh】trong album, ảnh sẽ hiển thị trực tiếp.
+            </div>
+            
+            <div id="gallery-list-container" style="flex: 1; overflow-y: auto; margin-bottom: 15px; border: 1px solid #eee; border-radius: 8px; padding: 10px; min-height: 200px;">
+                <!-- JS populated list -->
+                <p class="placeholder-text" style="text-align: center; color: #999; margin-top: 20px;">Album trống trơn~</p>
+            </div>
+            
+            <div style="margin-top: 5px; text-align: right;">
+                <button id="close-gallery-modal-btn" class="btn btn-neutral">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Presets Modal -->
+    <div id="gallery-presets-modal" class="modal-overlay" style="z-index: 10002;">
+        <div class="modal-window" style="max-width: 520px;">
+            <h3 style="margin: 0 0 15px 0;">Thư viện preset album</h3>
+            <div id="gallery-presets-list" style="max-height: 340px; overflow: auto; margin-bottom: 15px; border: 1px solid #f0f0f0; padding: 8px; border-radius: 6px; min-height: 100px;">
+                <!-- JS populated -->
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="close-gallery-presets-modal" class="btn btn-primary">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Gallery Preset Modal -->
+    <div id="save-gallery-preset-modal" class="modal-overlay" style="z-index: 10002;">
+        <div class="modal-window">
+            <h3>Lưu thành preset</h3>
+            <div class="form-group">
+                <label>Tên preset</label>
+                <input type="text" id="gallery-preset-name-input" placeholder="Ví dụ: ảnh phong cảnh chung" required>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="confirm-save-gallery-preset-btn" class="btn btn-primary" style="flex: 1;">Lưu</button>
+                <button id="cancel-save-gallery-preset-btn" class="btn btn-neutral" style="flex: 1;">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Gallery Item Modal -->
+    <div id="gallery-item-modal" class="modal-overlay" style="z-index: 10001;">
+        <div class="modal-window">
+            <h3 id="gallery-item-modal-title">Thêm ảnh</h3>
+            <form id="gallery-item-form">
+                <input type="hidden" id="gallery-item-id">
+                <div id="gallery-item-preview" style="width: 100%; height: 150px; background-color: #f9f9f9; border-radius: 8px; margin-bottom: 15px; background-size: contain; background-repeat: no-repeat; background-position: center; border: 1px dashed #ddd; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                    Xem trước
+                </div>
+                
+                <div class="form-group">
+                    <label>Tên ảnh (để AI nhận diện, phải là duy nhất)</label>
+                    <input type="text" id="gallery-item-name" placeholder="Ví dụ: selfie bờ biển" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>ẢnhURL</label>
+                    <input type="url" id="gallery-item-url" placeholder="Dán link ảnh">
+                </div>
+                
+                <p style="text-align:center; color:#888; margin: -10px 0 15px;">hoặc</p>
+                <input type="file" id="gallery-item-upload" accept="image/*" style="display:none;">
+                <label for="gallery-item-upload" class="btn btn-secondary" style="width:100%; margin-bottom: 15px;">Tải từ máy</label>
+
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="button" id="cancel-gallery-item-btn" class="btn btn-neutral" style="margin-top: 10px;">Hủy</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Batch Add Gallery Modal -->
+    <div id="batch-gallery-modal" class="modal-overlay" style="z-index: 10001;">
+        <div class="modal-window">
+            <h3>Nhập album hàng loạt</h3>
+            <div class="form-group">
+                <label>Định dạng: tên:URL (mỗi dòng một cái)</label>
+                <textarea id="batch-gallery-textarea" rows="10" placeholder="selfie bờ biển:https://example.com/1.jpg&#10;mèo:https://example.com/2.png" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+            <input type="file" id="batch-gallery-file-input" accept=".txt" style="display:none;">
+            <button id="import-gallery-file-btn" class="btn btn-secondary" style="margin-bottom: 10px; width: 100%;">Đọc từ file TXT</button>
+            <button id="confirm-batch-gallery-btn" class="btn btn-primary">Bắt đầu nhập</button>
+            <button id="cancel-batch-gallery-btn" class="btn btn-neutral" style="margin-top: 10px;">Hủy</button>
+        </div>
+    </div>
+    <!-- Burnout Update Modal -->
+    <div id="burnout-update-modal" class="modal-overlay">
+        <div class="modal-window" style="max-height: 80vh; overflow-y: auto;">
+            <h3 style="margin-bottom: 20px;">Ghi chú cập nhật</h3>
+            <div class="update-log-content" style="text-align: left; line-height: 1.6; font-size: 14px; color: #333;">
+                
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Cảm nhận thời gian</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Cảm nhận thời gian: char sẽ biết bạn gửi tin lúc mấy giờ mấy phút ngày tháng năm nào</li>
+                    <li>Thay đổi: bỏ nút gửi, vị trí cũ đổi thành nút sticker, dùng phím Enter của bàn phím để gửi tin, nút lấy câu trả lời của ai giữ ở chỗ cũ.</li>
+                    
+                </ul>
+
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Tính năng mới</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Thêm: cài đặt nhiệt độ api</li>
+                    
+                    <li>Thêm: hộp báo lỗi và log chi tiết</li>
+                    <li>Font chuyển sang→giao diện Tùy chỉnh, thêm quản lý preset font, chỉnh cỡ chữ, phần lưu trữ chuyển sang vị trí font cũ (ô thứ ba của dock dưới)</li>
+                    <li>Thêm: khi gửi ngữ cảnh tự nhận diện{{user}}và thay ký tự này bằng tên persona người dùng hiện tại</li>
+                    <li>Thêm: chủ động nhắn tin khi chạy nền</li>
+                </ul>
+
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Quy tắc song ngữ</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Quy tắc song ngữ đổi sang nhận diện bằng 「」 thay vì (), mục đích: để một số char gửi được emoticon có ngoặc, tin cũ hiển thị không bị ảnh hưởng, cũng không sợ ai học theo ngữ cảnh, trước khi gửi lịch sử tin cũ sẽ tự đổi () thành 「」, chỉ cần sửa lại trong prompt quy chuẩn đầu ra mình đã viết là được</li>
+                </ul>
+
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Đổi giao diện</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Giao diện phòng chat làm lại lớn, kiểu kkt, nút quay lại ở góc trên trái, icon tìm kiếm góc trên phải chỉ để trang trí, vùng viên thuốc dưới tiêu đề dùng để phân nhóm nhân vật, tương đương thư mục, thư mục đổi tên tùy ý được, nhấn giữ một mục chat để chuyển vào thư mục</li>
+                    
+                </ul>
+
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Giao diện cài đặt chat</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Thêm: thanh trạng thái riêng của nhân vật, cách dùng giống regex thanh trạng thái của Tavern, tốt nhất nhấn mạnh xuất trong một tin và cố gắng gói gọn trong một thẻ<>, nếu không ai có thể chia thành nhiều tin mà mất định dạng! Thẻ thanh trạng thái vuốt trái để xem thanh trạng thái cũ, chỉ lưu 20 cái gần nhất</li>
+                    <li>Khi bật thanh trạng thái, cạnh tên ghi chú ở thanh trên giao diện chat sẽ hiện tín hiệu WIFI màu xanh, khi char xuất đúng định dạng thanh trạng thái, bấm vào đó để hiện thanh trạng thái</li>
+                    <li>Thêm: logic sticker, nhân vật chưa liên kết nhóm sticker sẽ không gửi sticker,</li>
+                    <li>Thêm: chế độ hiển thị ảnh đại diện. Hiện tất cả: tin nào cũng có ảnh đại diện bên cạnh. Gộp bong bóng: tin liên tiếp chỉ hiện ảnh đại diện ở tin đầu. Chế độ Kkt: tin liên tiếp của nhân vật chỉ hiện ảnh đại diện ở tin đầu, còn tin của mình không hiện ảnh đại diện. Ẩn tất cả: không hiện ảnh đại diện</li>
+                    <li>Thêm: công tắc mốc thời gian (chỉ ảnh hưởng style), tùy chỉnh bo góc ảnh đại diện, công tắc lớp mờ kính cho bong bóng</li>
+                    <li>Sửa: kiểu tin trích dẫn bắt chướcvx</li>
+                </ul>
+
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Thêm: giao diện danh bạ</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Giao diện danh bạ</li>
+                    <li>Ba icon góc trên phải chưa làm, chỉ để trang trí</li>
+                    <li>Thêm: hồ sơ cá nhân, hiển thị tất cả preset persona của bạn ở đây, ô văn bản điền thiết lập chung, như: ngoại hình bối cảnh blah blah, bấm viên thuốc nhỏ bên dưới để liên kết nhân vật, bấm nhân vật đã liên kết sẽ mở ô nhập thiết lập riêng, điền thiết lập riêng với nhân vật đó (như: đang hẹn hò, là chị/em gái/bạn gái cũ/quan hệ và bối cảnh riêng với nhân vật), bấm lưu đồng bộ xong sẽ tự nối persona chung + persona riêng. Tình huống dùng: một thiết lập chung liên kết nhiều char, mỗi char đặt một thiết lập riêng khác nhau. Biểu tượng ngôi sao góc trên phải, bấm sáng là chọn ảnh đại diện hiển thị trên đầu giao diện chính danh bạ.</li>
+                    <li>Thêm: danh sách bạn bè. Thật ra chẳng có tác dụng gì, đồ vô dụng thôi, bấm vào xem được tổng số tin, dung lượng chiếm, thời gian chat gần nhất.</li>
+                </ul>
+
+                <h4 style="margin: 15px 0 10px; color: var(--primary-color);">Thêm: giao diện menu</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                  
+                    <li>Quản lý preset thanh trạng thái, hỗ trợ xuất/nhập (chỉ nhập được file xuất từ link này)</li>
+                    <li>Trang hai Xưởng sáng tạo bấm không được là bình thường, chưa làm xong</li>
+                </ul>
+
+            </div>
+            <button onclick="document.getElementById('burnout-update-modal').classList.remove('visible')" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Update Log Modal -->
+    <div id="update-log-modal" class="modal-overlay">
+        <div class="modal-window">
+            <h3>Phát hiện phiên bản mới!</h3>
+            <div id="update-log-modal-content">
+                <!-- Update content will be injected here -->
+            </div>
+            <button id="close-update-log-modal" class="btn btn-primary" style="margin-top: 15px;">Mình biết rồi</button>
+        </div>
+    </div>
+
+    <!-- Private Chat Monitor Overlay (Browser Style) -->
+    <div id="private-chat-overlay" class="private-chat-overlay">
+        <div class="browser-window">
+            <div class="tabs-head">
+                <div class="tabs" id="private-chat-tabs">
+                    <!-- Tabs will be injected here -->
+                </div>
+                <div class="window-opt">
+                    <button id="private-window-minimize">-</button>
+                    <button id="private-window-maximize">□</button>
+                    <button id="private-window-close" class="window-close">✕</button>
+                </div>
+            </div>
+
+            <div class="head-browser">
+                <button disabled>←</button>
+                <button disabled>→</button>
+                <div class="address-bar" id="private-chat-title">
+                    <!-- Current session title -->
+                    Private Chat Monitor
+                </div>
+                <button>⋮</button>
+                <button class="star">✰</button>
+            </div>
+
+            <div class="browser-content" id="private-chat-content">
+                <!-- Chat messages will be injected here -->
+                <div class="empty-state">Chưa có phiên chat riêng nào đang hoạt động</div>
+            </div>
+            
+            <!-- Vùng nhập chat riêng -->
+            <div class="private-chat-input-area" id="private-chat-input-area">
+                <input type="text" class="private-chat-input" id="private-chat-input" placeholder="Gửi tin nhắn riêng...">
+            </div>
+        </div>
+    </div>
+
+
+<!-- 
+  === JSGiải thích chỉ mục file ===
+  Sau này khi sửa code, hãy tham khảo chú thích dưới đây để tìm file tương ứng:
+-->
+
+<!-- [1. Tầng cơ sở] -->
+<script src="js/utils.js"></script>    <!-- Hàm tiện ích: nén ảnh, thông báo Toast, số ngẫu nhiên… -->
+<script src="js/db.js"></script>       <!-- Tầng dữ liệu: cấu hình CSDL Dexie, định nghĩa biến toàn cục, đọc ghi dữ liệu -->
+
+<!-- [2. Tầng tương tác cốt lõi] -->
+<script src="js/ui.js"></script>       <!-- UITương tác: chuyển giao diện, logic màn hình chính, menu chuột phải -->
+<!-- Chat Modules -->
+<script src="js/modules/chat_list.js"></script>
+<script src="js/modules/character_import.js"></script>
+<script src="js/modules/chat_render.js"></script>
+<script src="js/modules/chat_archives.js"></script>
+    <script src="js/modules/chat_ai_airdrop.js"></script>
+    <script src="js/modules/chat_ai_prompt.js"></script>
+    <script src="js/modules/chat_ai_call.js"></script>
+    <script src="js/modules/chat_ai.js"></script>
+<script src="js/modules/chat_features.js"></script>
+<script src="js/modules/chat_ops.js"></script>
+<script src="js/chat.js"></script>     <!-- Lối vào cốt lõi của chat -->
+<script src="js/group_chat.js"></script> <!-- Hệ thống chat nhóm: quản lý, cài đặt, tạo Prompt cho nhóm -->
+<script src="js/contacts.js"></script> <!-- Danh bạ: danh sách bạn bè, danh thiếp -->
+<script src="js/modules/chat_room_html.js"></script> <!-- Chèn HTML phòng chat -->
+<script src="js/modules/chat_settings_html.js"></script> <!-- Chèn HTML cài đặt chat -->
+<script src="js/modules/group_settings_html.js"></script> <!-- Chèn HTML cài đặt nhóm -->
+<script src="js/modules/my_profile_html.js"></script> <!-- Chèn HTML hồ sơ của tôi -->
+<script src="js/modules/shop_html.js"></script> <!-- Chèn HTML cửa hàng -->
+<script src="js/modules/settings_chat.js"></script> <!-- Cài đặt & quản lý chat -->
+<script src="js/modules/keep_alive.js"></script> <!-- Tăng cường chạy liên tục đa nền tảng -->
+<script src="js/modules/settings_api.js"></script> <!-- Cài đặt API & preset -->
+<script src="js/modules/settings_presets.js"></script> <!-- Quản lý preset (bong bóng, persona…) -->
+<script src="js/modules/settings_customize.js"></script> <!-- Cài đặt cá nhân hóa & ngoại hình -->
+
+<!-- [3. Module chức năng độc lập (Plugins)] -->
+<script src="js/modules/sticker.js"></script>   <!-- Hệ thống quản lý sticker -->
+<script src="js/modules/worldbook.js"></script> <!-- Bộ thiết lập world book -->
+<script src="js/modules/peek.js"></script>      <!-- Nhìn lén điện thoại (album/tin nhắn…) -->
+<script src="js/modules/journal.js"></script>   <!-- Tạo nhật ký hồi ức -->
+<script src="js/modules/storage_html.js"></script> <!-- Chèn HTML dung lượng lưu trữ -->
+<script src="js/modules/storage.js"></script>   <!-- Biểu đồ phân tích dung lượng -->
+<script src="js/modules/widgets.js"></script>   <!-- Cài đặt widget màn hình chính -->
+<script src="js/modules/widget_market.js"></script> <!-- Chợ widget -->
+<script src="js/modules/tutorial.js"></script>  <!-- Hướng dẫn, nhật ký cập nhật, sao lưu GitHub -->
+<script src="js/modules/more_menu.js"></script> <!-- Menu Thêm & quản lý thanh trạng thái -->
+<script src="js/modules/search.js"></script> <!-- Module tìm lịch sử chat -->
+<script src="js/modules/battery_interaction.js"></script> <!-- Module tương tác pin -->
+<script src="js/modules/gallery.js"></script> <!-- Module quản lý album nhân vật -->
+<script src="js/modules/shop.js"></script>    <!-- Module cửa hàng -->
+<script src="js/modules/cot_settings.js"></script> <!-- Module cài đặt chuỗi suy nghĩ -->
+<script src="js/modules/video_call.js"></script> <!-- Module gọi video -->
+<script src="js/workshop_html.js"></script> <!-- Chèn HTML Xưởng vẽ -->
+<script src="js/modules/image-workshop/settings.js"></script>
+<script src="js/modules/image-workshop/prompts.js"></script>
+<script src="js/modules/image-workshop/generation.js"></script>
+<script src="js/modules/image-workshop/vibe.js"></script>
+<script src="js/modules/image-workshop/history.js"></script>
+<script src="js/modules/image-workshop/char.js"></script>
+<script src="js/workshop.js"></script> <!-- Module Xưởng vẽ -->
+<script src="js/modules/console.js"></script> <!-- Module console -->
+<script src="js/modules/community.js"></script> <!-- Module cộng đồng -->
+<script src="js/modules/st_unlock.js"></script> <!-- Module mở khóa Tavern -->
+<script src="js/modules/reader_parser.js"></script> <!-- TXTModule phân tích -->
+<script src="js/modules/reader_html.js"></script> <!-- Chèn HTML trình đọc -->
+<script src="js/modules/reader_bookshelf.js"></script> <!-- Logic kệ sách trình đọc -->
+<script src="js/modules/reader_view.js"></script> <!-- Logic giao diện trình đọc -->
+
+<!-- [4. Lối vào chương trình] -->
+<script src="js/main.js"></script>     <!-- Lối vào chính: khởi tạo (init), lắng nghe sự kiện toàn cục -->
+</body>
+</html>
