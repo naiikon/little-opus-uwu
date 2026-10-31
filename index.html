@@ -24,33 +24,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
     <!-- CSS Split: Base & Layout -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
 
     <!-- CSS Split: Core Features -->
-    <link rel="stylesheet" href="css/chat.css">
-    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="settings.css">
 
     <!-- CSS Split: Modules -->
-    <link rel="stylesheet" href="css/modules/peek.css">
-    <link rel="stylesheet" href="css/modules/moments.css">
-    <link rel="stylesheet" href="css/modules/search.css">
-    <link rel="stylesheet" href="css/modules/worldbook.css">
-    <link rel="stylesheet" href="css/modules/journal.css">
-    <link rel="stylesheet" href="css/modules/chat_archives.css">
-    <link rel="stylesheet" href="css/modules/steps.css">
-    <link rel="stylesheet" href="css/modules/more.css">
-    <link rel="stylesheet" href="css/modules/monitor.css">
-    <link rel="stylesheet" href="css/modules/tutorial.css">
-    <link rel="stylesheet" href="css/modules/shop.css">
-    <link rel="stylesheet" href="css/modules/widget_market.css">
-    <link rel="stylesheet" href="css/modules/cot_settings.css">
-    <link rel="stylesheet" href="css/modules/video_call.css">
-    <link rel="stylesheet" href="css/modules/storage.css">
-    <link rel="stylesheet" href="css/workshop.css">
-    <link rel="stylesheet" href="css/modules/console.css">
-    <link rel="stylesheet" href="css/modules/community.css">
-    <link rel="stylesheet" href="css/modules/reader.css">
+    <link rel="stylesheet" href="peek.css">
+    <link rel="stylesheet" href="moments.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="worldbook.css">
+    <link rel="stylesheet" href="journal.css">
+    <link rel="stylesheet" href="chat_archives.css">
+    <link rel="stylesheet" href="steps.css">
+    <link rel="stylesheet" href="more.css">
+    <link rel="stylesheet" href="monitor.css">
+    <link rel="stylesheet" href="tutorial.css">
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="widget_market.css">
+    <link rel="stylesheet" href="cot_settings.css">
+    <link rel="stylesheet" href="video_call.css">
+    <link rel="stylesheet" href="storage.css">
+    <link rel="stylesheet" href="workshop.css">
+    <link rel="stylesheet" href="console.css">
+    <link rel="stylesheet" href="community.css">
+    <link rel="stylesheet" href="reader.css">
 
     <!-- Other Styles -->
     <link rel="stylesheet" href="contacts.css">
@@ -2724,70 +2724,70 @@
 -->
 
 <!-- [1. Tầng cơ sở] -->
-<script src="js/utils.js"></script>    <!-- Hàm tiện ích: nén ảnh, thông báo Toast, số ngẫu nhiên… -->
-<script src="js/db.js"></script>       <!-- Tầng dữ liệu: cấu hình CSDL Dexie, định nghĩa biến toàn cục, đọc ghi dữ liệu -->
+<script src="utils.js"></script>    <!-- Hàm tiện ích: nén ảnh, thông báo Toast, số ngẫu nhiên… -->
+<script src="db.js"></script>       <!-- Tầng dữ liệu: cấu hình CSDL Dexie, định nghĩa biến toàn cục, đọc ghi dữ liệu -->
 
 <!-- [2. Tầng tương tác cốt lõi] -->
-<script src="js/ui.js"></script>       <!-- UITương tác: chuyển giao diện, logic màn hình chính, menu chuột phải -->
+<script src="ui.js"></script>       <!-- UITương tác: chuyển giao diện, logic màn hình chính, menu chuột phải -->
 <!-- Chat Modules -->
-<script src="js/modules/chat_list.js"></script>
-<script src="js/modules/character_import.js"></script>
-<script src="js/modules/chat_render.js"></script>
-<script src="js/modules/chat_archives.js"></script>
-    <script src="js/modules/chat_ai_airdrop.js"></script>
-    <script src="js/modules/chat_ai_prompt.js"></script>
-    <script src="js/modules/chat_ai_call.js"></script>
-    <script src="js/modules/chat_ai.js"></script>
-<script src="js/modules/chat_features.js"></script>
-<script src="js/modules/chat_ops.js"></script>
-<script src="js/chat.js"></script>     <!-- Lối vào cốt lõi của chat -->
-<script src="js/group_chat.js"></script> <!-- Hệ thống chat nhóm: quản lý, cài đặt, tạo Prompt cho nhóm -->
-<script src="js/contacts.js"></script> <!-- Danh bạ: danh sách bạn bè, danh thiếp -->
-<script src="js/modules/chat_room_html.js"></script> <!-- Chèn HTML phòng chat -->
-<script src="js/modules/chat_settings_html.js"></script> <!-- Chèn HTML cài đặt chat -->
-<script src="js/modules/group_settings_html.js"></script> <!-- Chèn HTML cài đặt nhóm -->
-<script src="js/modules/my_profile_html.js"></script> <!-- Chèn HTML hồ sơ của tôi -->
-<script src="js/modules/shop_html.js"></script> <!-- Chèn HTML cửa hàng -->
-<script src="js/modules/settings_chat.js"></script> <!-- Cài đặt & quản lý chat -->
-<script src="js/modules/keep_alive.js"></script> <!-- Tăng cường chạy liên tục đa nền tảng -->
-<script src="js/modules/settings_api.js"></script> <!-- Cài đặt API & preset -->
-<script src="js/modules/settings_presets.js"></script> <!-- Quản lý preset (bong bóng, persona…) -->
-<script src="js/modules/settings_customize.js"></script> <!-- Cài đặt cá nhân hóa & ngoại hình -->
+<script src="chat_list.js"></script>
+<script src="character_import.js"></script>
+<script src="chat_render.js"></script>
+<script src="chat_archives.js"></script>
+    <script src="chat_ai_airdrop.js"></script>
+    <script src="chat_ai_prompt.js"></script>
+    <script src="chat_ai_call.js"></script>
+    <script src="chat_ai.js"></script>
+<script src="chat_features.js"></script>
+<script src="chat_ops.js"></script>
+<script src="chat.js"></script>     <!-- Lối vào cốt lõi của chat -->
+<script src="group_chat.js"></script> <!-- Hệ thống chat nhóm: quản lý, cài đặt, tạo Prompt cho nhóm -->
+<script src="contacts.js"></script> <!-- Danh bạ: danh sách bạn bè, danh thiếp -->
+<script src="chat_room_html.js"></script> <!-- Chèn HTML phòng chat -->
+<script src="chat_settings_html.js"></script> <!-- Chèn HTML cài đặt chat -->
+<script src="group_settings_html.js"></script> <!-- Chèn HTML cài đặt nhóm -->
+<script src="my_profile_html.js"></script> <!-- Chèn HTML hồ sơ của tôi -->
+<script src="shop_html.js"></script> <!-- Chèn HTML cửa hàng -->
+<script src="settings_chat.js"></script> <!-- Cài đặt & quản lý chat -->
+<script src="keep_alive.js"></script> <!-- Tăng cường chạy liên tục đa nền tảng -->
+<script src="settings_api.js"></script> <!-- Cài đặt API & preset -->
+<script src="settings_presets.js"></script> <!-- Quản lý preset (bong bóng, persona…) -->
+<script src="settings_customize.js"></script> <!-- Cài đặt cá nhân hóa & ngoại hình -->
 
 <!-- [3. Module chức năng độc lập (Plugins)] -->
-<script src="js/modules/sticker.js"></script>   <!-- Hệ thống quản lý sticker -->
-<script src="js/modules/worldbook.js"></script> <!-- Bộ thiết lập world book -->
-<script src="js/modules/peek.js"></script>      <!-- Nhìn lén điện thoại (album/tin nhắn…) -->
-<script src="js/modules/journal.js"></script>   <!-- Tạo nhật ký hồi ức -->
-<script src="js/modules/storage_html.js"></script> <!-- Chèn HTML dung lượng lưu trữ -->
-<script src="js/modules/storage.js"></script>   <!-- Biểu đồ phân tích dung lượng -->
-<script src="js/modules/widgets.js"></script>   <!-- Cài đặt widget màn hình chính -->
-<script src="js/modules/widget_market.js"></script> <!-- Chợ widget -->
-<script src="js/modules/tutorial.js"></script>  <!-- Hướng dẫn, nhật ký cập nhật, sao lưu GitHub -->
-<script src="js/modules/more_menu.js"></script> <!-- Menu Thêm & quản lý thanh trạng thái -->
-<script src="js/modules/search.js"></script> <!-- Module tìm lịch sử chat -->
-<script src="js/modules/battery_interaction.js"></script> <!-- Module tương tác pin -->
-<script src="js/modules/gallery.js"></script> <!-- Module quản lý album nhân vật -->
-<script src="js/modules/shop.js"></script>    <!-- Module cửa hàng -->
-<script src="js/modules/cot_settings.js"></script> <!-- Module cài đặt chuỗi suy nghĩ -->
-<script src="js/modules/video_call.js"></script> <!-- Module gọi video -->
-<script src="js/workshop_html.js"></script> <!-- Chèn HTML Xưởng vẽ -->
-<script src="js/modules/image-workshop/settings.js"></script>
-<script src="js/modules/image-workshop/prompts.js"></script>
-<script src="js/modules/image-workshop/generation.js"></script>
-<script src="js/modules/image-workshop/vibe.js"></script>
-<script src="js/modules/image-workshop/history.js"></script>
-<script src="js/modules/image-workshop/char.js"></script>
-<script src="js/workshop.js"></script> <!-- Module Xưởng vẽ -->
-<script src="js/modules/console.js"></script> <!-- Module console -->
-<script src="js/modules/community.js"></script> <!-- Module cộng đồng -->
-<script src="js/modules/st_unlock.js"></script> <!-- Module mở khóa Tavern -->
-<script src="js/modules/reader_parser.js"></script> <!-- TXTModule phân tích -->
-<script src="js/modules/reader_html.js"></script> <!-- Chèn HTML trình đọc -->
-<script src="js/modules/reader_bookshelf.js"></script> <!-- Logic kệ sách trình đọc -->
-<script src="js/modules/reader_view.js"></script> <!-- Logic giao diện trình đọc -->
+<script src="sticker.js"></script>   <!-- Hệ thống quản lý sticker -->
+<script src="worldbook.js"></script> <!-- Bộ thiết lập world book -->
+<script src="peek.js"></script>      <!-- Nhìn lén điện thoại (album/tin nhắn…) -->
+<script src="journal.js"></script>   <!-- Tạo nhật ký hồi ức -->
+<script src="storage_html.js"></script> <!-- Chèn HTML dung lượng lưu trữ -->
+<script src="storage.js"></script>   <!-- Biểu đồ phân tích dung lượng -->
+<script src="widgets.js"></script>   <!-- Cài đặt widget màn hình chính -->
+<script src="widget_market.js"></script> <!-- Chợ widget -->
+<script src="tutorial.js"></script>  <!-- Hướng dẫn, nhật ký cập nhật, sao lưu GitHub -->
+<script src="more_menu.js"></script> <!-- Menu Thêm & quản lý thanh trạng thái -->
+<script src="search.js"></script> <!-- Module tìm lịch sử chat -->
+<script src="battery_interaction.js"></script> <!-- Module tương tác pin -->
+<script src="gallery.js"></script> <!-- Module quản lý album nhân vật -->
+<script src="shop.js"></script>    <!-- Module cửa hàng -->
+<script src="cot_settings.js"></script> <!-- Module cài đặt chuỗi suy nghĩ -->
+<script src="video_call.js"></script> <!-- Module gọi video -->
+<script src="workshop_html.js"></script> <!-- Chèn HTML Xưởng vẽ -->
+<script src="settings.js"></script>
+<script src="prompts.js"></script>
+<script src="generation.js"></script>
+<script src="vibe.js"></script>
+<script src="history.js"></script>
+<script src="char.js"></script>
+<script src="workshop.js"></script> <!-- Module Xưởng vẽ -->
+<script src="console.js"></script> <!-- Module console -->
+<script src="community.js"></script> <!-- Module cộng đồng -->
+<script src="st_unlock.js"></script> <!-- Module mở khóa Tavern -->
+<script src="reader_parser.js"></script> <!-- TXTModule phân tích -->
+<script src="reader_html.js"></script> <!-- Chèn HTML trình đọc -->
+<script src="reader_bookshelf.js"></script> <!-- Logic kệ sách trình đọc -->
+<script src="reader_view.js"></script> <!-- Logic giao diện trình đọc -->
 
 <!-- [4. Lối vào chương trình] -->
-<script src="js/main.js"></script>     <!-- Lối vào chính: khởi tạo (init), lắng nghe sự kiện toàn cục -->
+<script src="main.js"></script>     <!-- Lối vào chính: khởi tạo (init), lắng nghe sự kiện toàn cục -->
 </body>
 </html>
